@@ -37,7 +37,7 @@
 	</properties>
 
 	<dependencies>
-		
+
 		<!-- Other Web dependencies -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -113,8 +113,8 @@
 			<artifactId>spring-webmvc-portlet</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
-		
-		
+
+
 		<!-- Logging with SLF4J & LogBack -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -194,19 +194,30 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.3.1</version>
 		</dependency>
-		
+
 		<!--commons-lang3 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.3.1</version>
+			<version>3.3.2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>1.3.2</version>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+
 		<!-- Jackson JSON START -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
