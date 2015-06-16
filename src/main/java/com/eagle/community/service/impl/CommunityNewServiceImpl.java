@@ -36,7 +36,7 @@ public class CommunityNewServiceImpl implements CommunityNewsService {
 		temp.setAuthorName(news.getAuthorName());
 		temp.setAtricle(news.getAtricle());
 		temp.setCount(news.getCount());
-		
+
 		communityNewsDao.update(temp);
 		return temp;
 	}

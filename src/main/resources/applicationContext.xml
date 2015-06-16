@@ -15,10 +15,6 @@
 	<context:component-scan base-package="com.eagle.community.dao.*"></context:component-scan>
 	<context:component-scan base-package="com.eagle.community.service.*"></context:component-scan>
 
-	<!-- 配置JSR-303验证 -->
-
-	<bean id="validator"
-		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
 
 	<!-- hibernate datasource sessionFactory -->
