@@ -53,6 +53,8 @@
 		<!--c3p0全局的PreparedStatements缓存的大小。如果maxStatements与maxStatementsPerConnection均为0，则缓存不生效，只要有一个不为0，则语句的缓存就能生效。如果默认值: 
 			0 -->
 		<property name="maxStatements" value="100"></property>
+
+
 	</bean>
 
 	<!--<start id="bean_sessionFactory" /> -->
@@ -62,17 +64,19 @@
 		<property name="packagesToScan">
 			<list>
 				<value>com.eagle.community.model</value>
-				
+
 			</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>
+				<prop key="show_sql">true</prop>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<!-- 自动更新表结构，开发阶段使用 -->
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
-				<!--  <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
-				</prop> -->
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+				<!-- <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory 
+					</prop> -->
 			</props>
 		</property>
 	</bean>

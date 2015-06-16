@@ -1,5 +1,6 @@
 package com.eagle.community.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,9 +12,15 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
+
 @Entity
 @Table(name = "HBC_community_news")
-public class CommunityNews {
+public class CommunityNews implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -83,6 +90,14 @@ public class CommunityNews {
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+	@Override
+	public String toString() {
+		return "CommunityNews [id=" + id + ", title=" + title + ", date="
+				+ date + ", authorName=" + authorName + ", atricle=" + atricle
+				+ ", count=" + count + "]";
+	}
+	
 	
 	
 }

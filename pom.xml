@@ -18,7 +18,7 @@
 		<!-- Web -->
 		<jsp.version>2.2</jsp.version>
 		<jstl.version>1.2</jstl.version>
-		<servlet.version>2.5</servlet.version>
+		<servlet.version>3.0.1</servlet.version>
 
 		<!-- Spring -->
 		<spring-framework.version>4.1.6.RELEASE</spring-framework.version>
@@ -46,7 +46,7 @@
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
+			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
@@ -169,8 +169,14 @@
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
+			<version>1.1.0.Final</version>
 			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
 		</dependency>
 
 
