@@ -12,10 +12,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-
 @Entity
 @Table(name = "HBC_community_news")
-public class CommunityNews implements Serializable{
+public class CommunityNews implements Serializable {
 
 	/**
 	 * 
@@ -27,20 +26,20 @@ public class CommunityNews implements Serializable{
 	@Column(name = "id")
 	private int id;
 
-	@Column(name="title",length=100)
+	@Column(name = "title", length = 100)
 	private String title;
 
-	@Column(name="date")
+	@Column(name = "date")
 	private Date date;
-	
-	@Column(name="author_name",length=20)
-	private String authorName;
-	
-	@Column(name="article")
-	@Type(type="text")
-	private String atricle;
 
-	@Column(name="count")
+	@Column(name = "author_name", length = 20)
+	private String authorName;
+
+	@Column(name = "article")
+	@Type(type = "text")
+	private String article;
+
+	@Column(name = "count")
 	private int count;
 
 	public int getId() {
@@ -75,12 +74,12 @@ public class CommunityNews implements Serializable{
 		this.authorName = authorName;
 	}
 
-	public String getAtricle() {
-		return atricle;
+	public String getArticle() {
+		return article;
 	}
 
-	public void setAtricle(String atricle) {
-		this.atricle = atricle;
+	public void setArticle(String article) {
+		this.article = article;
 	}
 
 	public int getCount() {
@@ -94,10 +93,8 @@ public class CommunityNews implements Serializable{
 	@Override
 	public String toString() {
 		return "CommunityNews [id=" + id + ", title=" + title + ", date="
-				+ date + ", authorName=" + authorName + ", atricle=" + atricle
+				+ date + ", authorName=" + authorName + ", atricle=" + article
 				+ ", count=" + count + "]";
 	}
-	
-	
-	
+
 }

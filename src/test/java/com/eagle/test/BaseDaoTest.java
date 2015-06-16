@@ -32,7 +32,7 @@ public class BaseDaoTest {
 	// @Test
 	public void testSave() {
 		CommunityNews news = new CommunityNews();
-		news.setAtricle("复仇者联盟免费小区公映");
+		news.setArticle("复仇者联盟免费小区公映");
 		news.setDate(new Date(System.currentTimeMillis()));
 		news.setTitle("test 02");
 		news.setAuthorName("罗亮");

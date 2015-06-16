@@ -12,7 +12,7 @@ import com.eagle.community.model.CommunityNews;
 public interface CommunityNewsService {
 
 	//保存一条社区动态
-	public int saveNews(CommunityNews news);
+	public CommunityNews saveNews(CommunityNews news);
 	
 	//更新一条社区动态信息
 	public CommunityNews updateNews(CommunityNews news);

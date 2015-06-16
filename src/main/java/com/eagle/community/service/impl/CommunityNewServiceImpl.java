@@ -25,8 +25,9 @@ public class CommunityNewServiceImpl implements CommunityNewsService {
 	private CommunityNewsDao communityNewsDao;
 
 	@Override
-	public int saveNews(CommunityNews news) {
-		return communityNewsDao.save(news);
+	public CommunityNews saveNews(CommunityNews news) {
+		int id =communityNewsDao.save(news);
+		return communityNewsDao.find(id);
 	}
 
 	@Override
@@ -34,7 +35,7 @@ public class CommunityNewServiceImpl implements CommunityNewsService {
 		CommunityNews temp = communityNewsDao.find(news.getId());
 		temp.setTitle(news.getTitle());
 		temp.setAuthorName(news.getAuthorName());
-		temp.setAtricle(news.getAtricle());
+		temp.setArticle(news.getArticle());
 		temp.setCount(news.getCount());
 
 		communityNewsDao.update(temp);
