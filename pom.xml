@@ -172,7 +172,7 @@
 			<version>1.1.0.Final</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
@@ -240,7 +240,21 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.3.5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
+
 		<!-- Jackson JSON END -->
+
+		<dependency>
+			<groupId> com.baidu.ueditor </groupId>
+			<artifactId> ueditor </artifactId>
+			<version> 1.1.1 </version>
+			<scope> system </scope>
+			<systemPath> ${basedir}/src/main/webapp/WEB-INF/lib/ueditor-1.1.1.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 	<build>
