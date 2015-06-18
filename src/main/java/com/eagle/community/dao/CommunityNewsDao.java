@@ -4,5 +4,5 @@ import com.eagle.community.model.CommunityNews;
 
 
 public interface CommunityNewsDao extends BaseDao<CommunityNews,Integer>{
-
+	
 }
