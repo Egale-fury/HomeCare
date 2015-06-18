@@ -1,0 +1,258 @@
+  body{
+       margin:0;
+       padding:0;
+       font-family: "Microsoft Yahei";
+       font-size:12px;
+       background-image: url("../img/dust.png");
+       list-style: none;
+       }
+       
+    /* 头部 */   
+	.top{
+	   position:relative;
+	   width:70%;
+	   height:180px;
+	   margin: 0 auto;
+	   text-align:center;
+	}
+	
+	.toptitle{
+		position:absolute;
+		display:table-cell;
+		vertical-align:middle;
+		text-align:center;
+		width:100%;
+		height:80%;
+	}
+	
+	/* 菜单栏 */
+	.menu{
+	    position:absolute;
+		width:100%;
+		height:20%;
+		bottom:0;
+		background:#FF6600;
+		padding-bottom: 5px;
+	}
+	
+	.menubox{
+		position:relative;
+		width:80%;
+		height:80%;
+		margin:2px auto 0px;
+		background:#FF6600;
+	}
+	
+	.menuboxchoice{
+		position:relative;
+		width:90%;
+		height:70%;
+		margin:8px auto;
+		background:#FF6600;
+		font-size: 15pt;
+	}
+	
+	
+	    /* 标题栏中的链接属性设置*/
+	    a.title:link{
+	    background-color:#FF6600;
+	    color:#FFF;
+	    text-decoration:none;
+	     }
+	    a.title:visited {
+	     background-color:#FF6600;
+	     color:#FFF;
+	     text-decoration:none;
+	     }
+	    a.title:hover {
+	    background-color:#FFF;
+	    color:#FF6600;}	
+        a.title:active {
+        background-color:#FF6600;
+        color:#FFF;
+        }	
+	    a.title{
+	    display:inline-block;
+	    width:100%;
+		font-size: 14pt;
+	     }
+	     
+         .titleli{
+		 display:inline-block;
+		 background:#FF6600) ;
+		 width: 15%
+		}
+		
+		/* 主体部分 */
+		.main{
+		 position:relative;
+		 width: 70%;
+		 height: 800px;
+		 margin:10px auto;
+		 border: 1px solid #ccc;
+		 background-color: #fff;
+		}
+		
+		/*主体最上面的div块 */
+		.maintitle{
+		 position: absolute;
+		 padding-left:10px;
+		 width: 99%;
+		 height: 5%;
+		 margin: 0 auto;
+		 background-color: white;
+		}
+		/*titlelocation块的内嵌左边 */
+		.titlelocationleft{
+		 position:absolute;
+		 left:5%;
+		 width:14%;
+		 height:70%;
+		 background-color: white;
+		 margin-top:10px;
+		 
+		}
+		/*箭头图标块 */
+		.arrowimg{
+		    position:absolute;
+		    display: inline-block;
+			width: 30%;
+			height: 100%;
+		}
+		/*社区动态标题属性设置 */
+		.fontdiv{
+		    position:absolute;
+			display: inline-block;
+			left:30%;
+			width:60%;
+			height:100%;
+			font-size: 14pt;
+			color: #FF6600;
+			padding-top:1px;
+			text-align: center;
+		}
+
+        /*titlelocation块的内嵌右边 */
+		.titlelocationright{
+		 position:absolute;
+		 right:5%;
+		 width:20%;
+		 height:70%;
+		 background-color: white;
+		 margin-top:10px;
+		 text-align: center;
+		}
+
+		/*位置信息 */
+		.locationinfo{
+		 position: relative;
+		 width: 90%;
+		 height: 70%;
+		 margin: 6px auto 0px;
+		 font-size: 10pt;
+		 color: #000;
+		 background-color: white;
+		}
+
+		/*橘黄色的线 */
+		.topline{
+		    position:absolute;
+		    top:5%;
+			width: 90%;
+			left:5%;
+			margin-top:0px;
+			margin-bottom: 10px;
+			color: #FF6600;
+		}
+
+		/*主体的信息列表块 */
+		.maininfo{
+		 position: absolute;
+		 top: 6%;
+		 width: 100%;
+		 height: 95%;
+		 background-color: white;
+		}
+
+		/*ul框的div块*/
+		.ullist{
+		 position: absolute;
+		 list-style-type:none;
+		 width:100%; 
+		 margin: 0;
+		 padding-left: 0px;
+		 background-color: white;
+		}
+		/*li框的属性*/
+		.infoli{
+			position: relative;
+			height: 40px;
+			width: 95%;
+			margin: 5px auto ;
+			padding-left:5%;
+			background: #DEF0FD;
+		}
+
+		 /* 设置信息链表链接属性*/
+	   a.b:link{
+		color:black;
+		text-decoration:none;
+	   }
+	   a.b:visited {
+	   color:black;
+	   text-decoration:none;
+	   }
+	   a.b:hover{
+	   color:#e58100;
+	   text-decoration: none;
+	   }
+	   a.b:active {
+	   color:black;
+	   text-decoration: none;
+	   }
+	   a.b{
+	   	display: inline-block;
+		font-size:12pt;
+		width: 40%;
+		height: 60%;
+		padding-top: 10px;
+	   }
+
+	/*时间块*/
+	.date{
+		display:inline-block;
+		float: right;
+		width: 30%;
+		height: 80%;
+		padding-top:10px;
+		font-size:13pt;
+		color:#000;
+		text-align: center;
+	}
+	
+		      /* 底部 */
+		.foot{
+		position:relative;
+		width:70%;
+		height:100px;
+		margin:10px auto;
+		background:url("../img/titlebg.png");
+		}
+		
+	 	
+		.footbasic{
+			position: absolute;
+			width: 100%;
+			height: 30%;
+			bottom: 5px;
+			background:url("../img/titlebg.png");
+		}
+		
+		.footbasicinfo{
+			position: relative;
+			width: 80%;
+			height: 100%;
+			margin: 0 auto;
+			background:url("../img/titlebg.png");
+			text-align: center;
+		}
