@@ -40,14 +40,14 @@
 					<property name="suffix" value=".jsp" />
 
 				</bean>
-
-
 			</list>
-
 		</property>
+
 	</bean>
+	
 	<bean
 		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="order" value="1" />
