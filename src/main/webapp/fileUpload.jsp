@@ -22,7 +22,6 @@
 	<!-- 实例化编辑器 -->
 	<script type="text/javascript">
 		var ue = UE.getEditor('container')
-		console.log("zhixing");
 	</script>
 
 	<p>
