@@ -63,7 +63,8 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<list>
-				<value>com.eagle.community.model</value>
+				<value>com.eagle.community.user.entity</value>
+				<value>com.eagle.community.news.entity</value>
 
 			</list>
 		</property>
