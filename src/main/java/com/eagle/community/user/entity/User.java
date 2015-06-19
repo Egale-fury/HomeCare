@@ -1,4 +1,4 @@
-package com.eagle.community.model;
+package com.eagle.community.user.entity;
 
 import java.util.Date;
 

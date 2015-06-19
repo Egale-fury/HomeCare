@@ -55,4 +55,8 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+
+	<error-page>
+		<location>/error</location>
+	</error-page>
 </web-app>

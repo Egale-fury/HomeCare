@@ -1,4 +1,4 @@
-package com.eagle.community.service.impl;
+package com.eagle.community.news.service;
 
 import java.util.List;
 
@@ -7,9 +7,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.eagle.community.dao.CommunityNewsDao;
-import com.eagle.community.model.CommunityNews;
-import com.eagle.community.service.CommunityNewsService;
+import com.eagle.community.news.dao.CommunityNewsDao;
+import com.eagle.community.news.entity.CommunityNews;
 
 /*
  * @author dpc

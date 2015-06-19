@@ -1,10 +1,9 @@
-package com.eagle.community.dao.impl;
+package com.eagle.community.news.dao;
 
 import org.springframework.stereotype.Repository;
 
 import com.eagle.community.dao.BaseDaoImpl;
-import com.eagle.community.dao.CommunityNewsDao;
-import com.eagle.community.model.CommunityNews;
+import com.eagle.community.news.entity.CommunityNews;
 
 @Repository("communityNewsDao")
 public class CommunityNewsDaoImpl extends BaseDaoImpl<CommunityNews, Integer>

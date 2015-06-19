@@ -1,4 +1,4 @@
-package com.eagle.community.controller;
+package com.eagle.community.news.controller;
 
 import java.util.Date;
 import java.util.List;
@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.community.dao.BaseDaoImpl;
-import com.eagle.community.model.CommunityNews;
-import com.eagle.community.service.CommunityNewsService;
+import com.eagle.community.news.entity.CommunityNews;
+import com.eagle.community.news.service.CommunityNewsService;
 
 @Controller
 @RequestMapping("/communityNews")

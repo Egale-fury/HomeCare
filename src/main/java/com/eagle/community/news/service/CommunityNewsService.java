@@ -1,8 +1,8 @@
-package com.eagle.community.service;
+package com.eagle.community.news.service;
 
 import java.util.List;
 
-import com.eagle.community.model.CommunityNews;
+import com.eagle.community.news.entity.CommunityNews;
 
 /*
  * @author dpc
