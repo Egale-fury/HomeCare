@@ -100,6 +100,11 @@ public class CommunityNewsController {
 		return news;
 	}
 	
-	
+	//测试ajax
+	@RequestMapping(value="/ajax",method=RequestMethod.POST)
+	public  String app(){
+		//System.out.println("到了控制层");
+		return "login";
+	}
 	
 }
