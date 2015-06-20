@@ -74,7 +74,7 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<!-- 自动更新表结构，开发阶段使用 -->
-				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop>-->
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 				<!-- <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory 

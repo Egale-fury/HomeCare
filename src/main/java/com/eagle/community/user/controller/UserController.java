@@ -30,17 +30,28 @@ public class UserController {
 	@RequestMapping(value = "/{id}.json", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody User getUserJson(@PathVariable("id") String id) {
+		logger.info("getUserJson method is invoked ");
 		User user = userServcie.findUserById(id);
 		return user;
 	}
 
+	//创建一个新用户的请求
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody User updateUser(@RequestBody User user) {
+	public @ResponseBody User createUser(@RequestBody User user) {
 		User temp = userServcie.createUser(user);
 		return temp;
 	}
 
+	
+	//更新一个已有的用户信息的
+	@RequestMapping(value="/update",method=RequestMethod.POST)//没有使用put是因为不同浏览器支持的原因
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody User updateUser(@RequestBody User user){
+		User temp = userServcie.updateUser(user);
+		return temp;
+	}
+	
 	public UserService getUserServcie() {
 		return userServcie;
 	}

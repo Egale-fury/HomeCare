@@ -48,19 +48,9 @@ public class CommunityNewServiceImpl implements CommunityNewsService {
 
 	@Override
 	public CommunityNews updateNews(CommunityNews news) {
-		CommunityNews temp = communityNewsDao.find(news.getId());
-		if (temp != null) {
-			temp.setTitle(news.getTitle());
-			temp.setAuthorName(news.getAuthorName());
-			temp.setArticle(news.getArticle());
-			temp.setCount(news.getCount());
-
-			communityNewsDao.update(temp);
-			return temp;
-		} else {
-			logger.info("the communityNews does not exist!!");
-			throw new NewsNotFoundException();
-		}
+			communityNewsDao.update(news);
+			return news;
+		
 	}
 
 	@Override

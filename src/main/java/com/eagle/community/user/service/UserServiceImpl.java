@@ -38,14 +38,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User user) {
-		User temp = userDao.find(user.getId());
-		if (temp == null) {
-			logger.info("要更新的用户不存在!! ");
-			throw new UserNotFoundException();
-		} else {
-			userDao.update(user);
-			return user;
-		}
+		userDao.update(user);
+		return user;
 	}
 
 	public UserDao getUserDao() {
