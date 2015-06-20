@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.ws.rs.DefaultValue;
 
 import org.hibernate.annotations.Type;
 
@@ -40,6 +41,7 @@ public class CommunityNews implements Serializable {
 	private String article;
 
 	@Column(name = "count")
+	@DefaultValue(value="0")
 	private int count;
 
 	public long getId() {

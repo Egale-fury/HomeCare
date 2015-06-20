@@ -2,6 +2,8 @@ package com.eagle.community.user.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,11 +12,15 @@ import javax.persistence.Table;
 public class Child {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false, length = 20)
-	private String id ;
+	private long id ;
 	
 	@Column(name="name",length=20)
 	private String name;
+	
+	@Column(name="relation_ship",length=20)
+	private String relationShip;
 	
 	@Column(name="age",length=3)
 	private int age;
@@ -37,7 +43,7 @@ public class Child {
 	}
 
 
-	public Child(String id, String name, int age, String sex, String workUnit,
+	public Child(long id, String name, int age, String sex, String workUnit,
 			String address, String phoneNum) {
 		super();
 		this.id = id;
@@ -51,12 +57,12 @@ public class Child {
 
 
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -121,12 +127,25 @@ public class Child {
 	}
 
 
+	public String getRelationShip() {
+		return relationShip;
+	}
+
+
+	public void setRelationShip(String relationShip) {
+		this.relationShip = relationShip;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Child [id=" + id + ", name=" + name + ", age=" + age + ", sex="
-				+ sex + ", workUnit=" + workUnit + ", address=" + address
+		return "Child [id=" + id + ", name=" + name + ", relationShip="
+				+ relationShip + ", age=" + age + ", sex=" + sex
+				+ ", workUnit=" + workUnit + ", address=" + address
 				+ ", phoneNum=" + phoneNum + "]";
 	}
+
+	
 	
 	
 	

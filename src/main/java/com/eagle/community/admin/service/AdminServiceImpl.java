@@ -16,7 +16,7 @@ import com.eagle.community.news.service.CommunityNewServiceImpl;
 public class AdminServiceImpl implements AdminService {
 
 	private static final Logger logger = LogManager
-			.getLogger(CommunityNewServiceImpl.class);
+			.getLogger(AdminServiceImpl.class);
 	
 	@Resource
 	private AdminDao adminDao;

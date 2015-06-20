@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.community.dao.BaseDaoImpl;
 import com.eagle.community.news.entity.CommunityNews;
+import com.eagle.community.news.entity.Pagination;
 import com.eagle.community.news.service.CommunityNewsService;
 
 @Controller
@@ -30,6 +31,8 @@ public class CommunityNewsController {
 
 	private static final Logger logger = LogManager
 			.getLogger(BaseDaoImpl.class);
+
+	private static final int PAGE_SIZE = 10;// 默认每页显示的是十条
 
 	// 创建一个CommunityNew并存到到数据库中的请求，成功返回创建的新对象
 	@RequestMapping(method = RequestMethod.POST)
@@ -59,12 +62,34 @@ public class CommunityNewsController {
 		return communityNewsService.getAllNews();
 	}
 
+	// 一次性获得自定义的条数的社区动态消息，以json返回
+	@RequestMapping(value = "/some/{num}", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public @ResponseBody List<CommunityNews> getSomeNews(
+			@PathVariable("num") int num) {
+		return communityNewsService.getNews(num);
+	}
+
+	// 获取某页的新闻,并在页面中显示
+	@RequestMapping(value = "/{pageIndex}")
+	public ModelAndView getOnePageNews(
+			@PathVariable("pageIndex") int currentPage) {
+		ModelAndView view = new ModelAndView("news_shower");// 暂定的试图名称
+		Pagination pagination = communityNewsService.getNews(currentPage,
+				PAGE_SIZE, true);
+		view.addObject("pagination", pagination);
+		return view;
+	}
+
 	// 处理查询某条社区动态的请求，并返回jsp视图
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView getNews(@PathVariable("id") int id) {
 		logger.info("/communityNews/getNews  is invoked ");
 		ModelAndView view = new ModelAndView("show_news");
 		CommunityNews news = communityNewsService.getNewsById(id);
+		// 增加一次该条社区动态消息的点击率
+		news.setCount(news.getCount() + 1);
+		communityNewsService.updateNews(news);
 		view.addObject("current_news", news);
 		return view;
 	}
@@ -72,7 +97,11 @@ public class CommunityNewsController {
 	// 通过id查询某条社区动态，返回json
 	@RequestMapping(value = "/{id}.json", method = RequestMethod.GET)
 	public @ResponseBody CommunityNews getNewsJSON(@PathVariable("id") int id) {
-		return communityNewsService.getNewsById(id);
+		// 增加一次该条社区动态消息的点击率
+		CommunityNews news = communityNewsService.getNewsById(id);
+		news.setCount(news.getCount() + 1);
+		communityNewsService.updateNews(news);
+		return news;
 
 	}
 
@@ -83,23 +112,21 @@ public class CommunityNewsController {
 		logger.info("/communityNews/{id} delete is invoked ");
 		CommunityNews news = communityNewsService.getNewsById(id);
 		if (news != null) {
-			if(communityNewsService.deleteNews(news))
+			if (communityNewsService.deleteNews(news))
 				logger.info("delete communityNews success");
 			else
 				logger.info("delete communityNews failed");
 		}
-		
 
 	}
-	
-	//更新一条社区动态消息
-	@RequestMapping(method=RequestMethod.PUT)
-	@ResponseStatus(value=HttpStatus.OK)
-	public @ResponseBody CommunityNews updateNews(@RequestBody CommunityNews newNews){
-		CommunityNews news =communityNewsService.updateNews(newNews);
+
+	// 更新一条社区动态消息
+	@RequestMapping(method = RequestMethod.PUT)
+	@ResponseStatus(value = HttpStatus.OK)
+	public @ResponseBody CommunityNews updateNews(
+			@RequestBody CommunityNews newNews) {
+		CommunityNews news = communityNewsService.updateNews(newNews);
 		return news;
 	}
-	
-	
-	
+
 }

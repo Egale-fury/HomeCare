@@ -3,6 +3,7 @@ package com.eagle.community.news.service;
 import java.util.List;
 
 import com.eagle.community.news.entity.CommunityNews;
+import com.eagle.community.news.entity.Pagination;
 
 /*
  * @author dpc
@@ -28,4 +29,13 @@ public interface CommunityNewsService {
 	
 	//获得所有的社区动态消息
 	public List<CommunityNews> getAllNews();
+	
+	//一次性获得指定条数的时间离目前最近的社区动态消息
+	public List<CommunityNews> getNews(int size);
+	
+	
+	//带分页获得指定的某一页的社区动态消息
+	public Pagination getNews(int currentPage,int pageSize,boolean desc);
+	
+	
 }

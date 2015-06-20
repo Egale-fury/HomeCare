@@ -7,13 +7,15 @@ import javax.transaction.Transactional;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.springframework.stereotype.Service;
 
-import com.eagle.community.dao.BaseDaoImpl;
 import com.eagle.community.news.dao.CommunityNewsDao;
 import com.eagle.community.news.entity.CommunityNews;
+import com.eagle.community.news.entity.Pagination;
 import com.eagle.community.news.exception.DuplicateNewsException;
 import com.eagle.community.news.exception.NewsNotFoundException;
+import com.eagle.community.news.exception.NoNewsException;
 
 /*
  * @author dpc
@@ -87,6 +89,35 @@ public class CommunityNewServiceImpl implements CommunityNewsService {
 	@Override
 	public int getTotalCount() {
 		return communityNewsDao.getTotalCount();
+	}
+
+	// 一次性获得指定的条数的发布时间最晚的size条新闻
+	@Override
+	public List<CommunityNews> getNews(int size) {
+		List<CommunityNews> list = communityNewsDao.getNews(size);
+		if (list.size() == 0) {
+			logger.info("暂时还没有添加社区动态消息");
+			throw new NoNewsException();
+		}
+		return list;
+	}
+
+	// 带分页获得某一页的社区动态新闻
+	@Override
+	public Pagination getNews(int currentPage, int pageSize,
+			boolean desc) {
+		int totalCount =getTotalCount();
+		Pagination pagination=new Pagination(currentPage,pageSize,totalCount);
+		List<CommunityNews> list = communityNewsDao.list(currentPage, pageSize,
+				desc);
+		if (list.size() == 0) {
+			logger.info("暂时还没有添加社区动态消息");
+			throw new NoNewsException();
+		} else{
+			pagination.setTotalPages(totalCount%pageSize+1);
+			pagination.setNews(list);
+			return pagination;
+		}
 	}
 
 	@Override
