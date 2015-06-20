@@ -18,7 +18,7 @@ public interface CommunityNewsService {
 	public CommunityNews updateNews(CommunityNews news);
 	
 	//更具id查询某一条具体的news
-	public CommunityNews getNewsById(int id);
+	public CommunityNews getNewsById(long id);
 	
 	//删除一条社区动态消息
 	public boolean deleteNews(CommunityNews news);

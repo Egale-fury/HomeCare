@@ -6,7 +6,7 @@ import com.eagle.community.dao.BaseDaoImpl;
 import com.eagle.community.news.entity.CommunityNews;
 
 @Repository("communityNewsDao")
-public class CommunityNewsDaoImpl extends BaseDaoImpl<CommunityNews, Integer>
+public class CommunityNewsDaoImpl extends BaseDaoImpl<CommunityNews, Long>
 		implements CommunityNewsDao {
 	
 

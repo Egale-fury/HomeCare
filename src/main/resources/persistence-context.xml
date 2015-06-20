@@ -65,12 +65,13 @@
 			<list>
 				<value>com.eagle.community.user.entity</value>
 				<value>com.eagle.community.news.entity</value>
+				<value>com.eagle.community.admin.entity</value>
 
 			</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="show_sql">true</prop>
+				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<!-- 自动更新表结构，开发阶段使用 -->
 				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->

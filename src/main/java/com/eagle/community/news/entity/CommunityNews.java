@@ -24,7 +24,7 @@ public class CommunityNews implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private long id;
 
 	@Column(name = "title", length = 100)
 	private String title;
@@ -42,7 +42,7 @@ public class CommunityNews implements Serializable {
 	@Column(name = "count")
 	private int count;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

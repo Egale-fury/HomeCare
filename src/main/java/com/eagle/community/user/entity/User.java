@@ -1,10 +1,12 @@
 package com.eagle.community.user.entity;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -51,6 +53,9 @@ public class User {
 
 	@Column(name = "phone_num", length = 14)
 	private String phoneNum;
+	
+	@ManyToMany
+	private Set<Child> children;
 
 	public String getId() {
 		return id;
@@ -154,6 +159,53 @@ public class User {
 
 	public void setEducatedLevel(String educatedLevel) {
 		this.educatedLevel = educatedLevel;
+	}
+
+	
+	
+	public Set<Child> getChildren() {
+		return children;
+	}
+
+	public void setChildren(Set<Child> children) {
+		this.children = children;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", realName=" + realName + ", password="
+				+ password + ", sex=" + sex + ", ethnicity=" + ethnicity
+				+ ", bitrhday=" + bitrhday + ", nativePlace=" + nativePlace
+				+ ", birthPlace=" + birthPlace + ", maritalStatus="
+				+ maritalStatus + ", cooupation=" + cooupation
+				+ ", educatedLevel=" + educatedLevel + ", address=" + address
+				+ ", phoneNum=" + phoneNum + ", children=" + children + "]";
+	}
+
+	public User() {
+		super();
+	}
+
+	public User(String id, String realName, String password, String sex,
+			String ethnicity, Date bitrhday, String nativePlace,
+			String birthPlace, String maritalStatus, String cooupation,
+			String educatedLevel, String address, String phoneNum,
+			Set<Child> children) {
+		super();
+		this.id = id;
+		this.realName = realName;
+		this.password = password;
+		this.sex = sex;
+		this.ethnicity = ethnicity;
+		this.bitrhday = bitrhday;
+		this.nativePlace = nativePlace;
+		this.birthPlace = birthPlace;
+		this.maritalStatus = maritalStatus;
+		this.cooupation = cooupation;
+		this.educatedLevel = educatedLevel;
+		this.address = address;
+		this.phoneNum = phoneNum;
+		this.children = children;
 	}
 	
 	

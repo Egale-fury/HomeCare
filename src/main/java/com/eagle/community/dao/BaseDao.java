@@ -18,6 +18,12 @@ public interface BaseDao<T, ID extends Serializable>  {
 	
 	public List<T> getAll();
 	
+	public List<T> list(boolean desc);
+	
+	public List<T> list(int pageIndex, int pageSize);
+	
+	public List<T> list(int pageIndex, int pageSize, boolean desc);
+	
 	public void update(T entity);
 	
 	public int getTotalCount();

@@ -18,9 +18,9 @@
 
 	<mvc:interceptors>
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
-		<!-- <mvc:interceptor> <mvc:mapping path="/api/**"/> <bean class="org.lqh.zhaomuwang.api.interceptor.MessageInterceptor" 
-			/> </mvc:interceptor> -->
+		<!-- 准备配置统计点击量的拦截器 -->
 	</mvc:interceptors>
+	
 
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
