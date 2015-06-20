@@ -39,7 +39,7 @@ public class CommunityNewServiceImpl implements CommunityNewsService {
 			throw new DuplicateNewsException();
 		} else {
 			logger.info("preapare to create a new communityNews ");
-			int id = communityNewsDao.save(news);
+			long id = communityNewsDao.save(news);
 			return communityNewsDao.find(id);
 		}
 	}
@@ -62,7 +62,7 @@ public class CommunityNewServiceImpl implements CommunityNewsService {
 	}
 
 	@Override
-	public CommunityNews getNewsById(int id) {
+	public CommunityNews getNewsById(long id) {
 		CommunityNews temp = communityNewsDao.find(id);
 		if (temp != null) {
 			return temp;
