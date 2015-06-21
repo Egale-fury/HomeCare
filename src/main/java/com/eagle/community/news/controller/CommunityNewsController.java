@@ -104,7 +104,7 @@ public class CommunityNewsController {
 	@RequestMapping(value="/ajax",method=RequestMethod.POST)
 	public  String app(){
 		//System.out.println("到了控制层");
-		return "login";
+		return "addmessage";
 	}
 	
 }
