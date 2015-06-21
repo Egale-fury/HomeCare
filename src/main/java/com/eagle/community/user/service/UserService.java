@@ -18,4 +18,6 @@ public interface UserService {
 	
 	public User addChildForUser(String id,Child childs);
 	
+	public User updateChildForUser(String id,Child childs);
+	
 }

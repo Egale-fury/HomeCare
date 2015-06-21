@@ -1,5 +1,7 @@
 package com.eagle.community.user.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "HBC_CHILD")
@@ -28,8 +28,8 @@ public class Child {
 	@NotNull(message = "该子女和老人的关系不能为空")
 	private String relationShip;
 
-	@Column(name = "age", length = 3)
-	private int age;
+	@Column(name = "bir")
+	private Date bir;
 
 	@Column(name = "sex", length = 2)
 	@NotNull(message = "子女性别需要填写")
@@ -49,12 +49,12 @@ public class Child {
 		super();
 	}
 
-	public Child(long id, String name, int age, String sex, String workUnit,
+	public Child(long id, String name, Date bir, String sex, String workUnit,
 			String address, String phoneNum) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.age = age;
+		this.bir = bir;
 		this.sex = sex;
 		this.workUnit = workUnit;
 		this.address = address;
@@ -77,13 +77,6 @@ public class Child {
 		this.name = name;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
 
 	public String getSex() {
 		return sex;
@@ -125,10 +118,19 @@ public class Child {
 		this.relationShip = relationShip;
 	}
 
+	
+	public Date getBir() {
+		return bir;
+	}
+
+	public void setBir(Date bir) {
+		this.bir = bir;
+	}
+
 	@Override
 	public String toString() {
 		return "Child [id=" + id + ", name=" + name + ", relationShip="
-				+ relationShip + ", age=" + age + ", sex=" + sex
+				+ relationShip + ", age=" + bir + ", sex=" + sex
 				+ ", workUnit=" + workUnit + ", address=" + address
 				+ ", phoneNum=" + phoneNum + "]";
 	}
@@ -137,9 +139,8 @@ public class Child {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((phoneNum == null) ? 0 : phoneNum.hashCode());
 		return result;
 	}
 
@@ -152,18 +153,17 @@ public class Child {
 		if (getClass() != obj.getClass())
 			return false;
 		Child other = (Child) obj;
+		if (id != other.id)
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (phoneNum == null) {
-			if (other.phoneNum != null)
-				return false;
-		} else if (!phoneNum.equals(other.phoneNum))
-			return false;
 		return true;
 	}
+
+
 	
 	
 

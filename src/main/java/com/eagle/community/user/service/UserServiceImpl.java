@@ -1,5 +1,8 @@
 package com.eagle.community.user.service;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
@@ -13,6 +16,7 @@ import com.eagle.community.user.dao.UserDao;
 import com.eagle.community.user.entity.Child;
 import com.eagle.community.user.entity.User;
 import com.eagle.community.user.exception.AuthenticationException;
+import com.eagle.community.user.exception.ChildNotFoundException;
 import com.eagle.community.user.exception.DuplicateUserException;
 import com.eagle.community.user.exception.UserNotFoundException;
 
@@ -84,8 +88,41 @@ public class UserServiceImpl extends BaseService implements UserService {
 			validate(childs);
 			user.getChildren().add(childs);
 		}else{
+			logger.info("id为:"+id+"用户不存在");
 			throw new UserNotFoundException();
 		}
+		return user;
+	}
+
+	@Override
+	public User updateChildForUser(String id, Child childs) {
+		User user =findUserById(id);
+		if(user!=null){
+			 Set<Child> children=user.getChildren();
+			if(children.contains(childs)){
+				Iterator<Child> it =children.iterator();
+				while(it.hasNext()){
+					Child temp =it.next();
+					if(temp.equals(childs)){
+						temp.setName(childs.getName());
+						temp.setSex(childs.getSex());
+						temp.setBir(childs.getBir());
+						temp.setAddress(childs.getAddress());
+						temp.setRelationShip(childs.getRelationShip());
+						temp.setPhoneNum(childs.getPhoneNum());
+						temp.setWorkUnit(childs.getWorkUnit());
+						break;
+					}
+				}
+			}else{
+				logger.info("id为:"+id+"的用户不存在chilId为"+childs.getId()+"的子女");
+				throw new ChildNotFoundException();
+			}
+		}else{
+			logger.info("id为：" + id + "的用户不存在 !");
+			throw new UserNotFoundException();
+		}
+		updateUser(user);
 		return user;
 	}
 

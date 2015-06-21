@@ -59,8 +59,17 @@ public class UserController {
 	// 为某个用户添加子女信息
 	@RequestMapping(value = "/{id}/addChild", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody User addChild(@PathVariable("id") String id, @RequestBody Child childs) {
+	public @ResponseBody User addChild(@PathVariable("id") String id,
+			@RequestBody Child childs) {
 		return userServcie.addChildForUser(id, childs);
+	}
+
+	// 修改某个用户的某个子女的信息
+	@RequestMapping(value = "/{id}/updateChild", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody User updateChild(@PathVariable("id") String id, @RequestBody Child childs) {
+		User user =userServcie.updateChildForUser(id, childs);
+		return user;
 	}
 
 	public UserService getUserServcie() {
