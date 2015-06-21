@@ -5,18 +5,20 @@ import javax.transaction.Transactional;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
 import org.springframework.stereotype.Service;
 
 import com.eagle.community.admin.service.AdminServiceImpl;
+import com.eagle.community.service.BaseService;
 import com.eagle.community.user.dao.UserDao;
+import com.eagle.community.user.entity.Child;
 import com.eagle.community.user.entity.User;
 import com.eagle.community.user.exception.AuthenticationException;
+import com.eagle.community.user.exception.DuplicateUserException;
 import com.eagle.community.user.exception.UserNotFoundException;
 
 @Service("userService")
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseService implements UserService {
 
 	private static final Logger logger = LogManager
 			.getLogger(AdminServiceImpl.class);
@@ -25,8 +27,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Override
-	public com.eagle.community.user.entity.User authenticate(String id,
-			String password) {
+	public User authenticate(String id, String password) {
 		User user = userDao.authenticate(id, password);
 		if (user == null) {
 			logger.info("用户名或密码不正确");
@@ -38,6 +39,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User user) {
+		validate(user);
 		userDao.update(user);
 		return user;
 	}
@@ -57,15 +59,34 @@ public class UserServiceImpl implements UserService {
 			logger.info("id为：" + id + "的用户不存在 !");
 			throw new UserNotFoundException();
 		} else {
-			logger.info("用户子女信息为 :"+user.getChildren());
+			// logger.info("用户子女信息为 :" + user.getChildren());
 			return user;
 		}
 	}
 
 	@Override
 	public User createUser(User user) {
-		String id =userDao.save(user);
-		return userDao.find(id);
+		validate(user);
+		if (userDao.find(user.getId()) == null) {
+			logger.info("用户尚不存在，准备创建用户");
+			userDao.save(user);
+			return user;
+		} else {
+			logger.info("该用户已存在!");
+			throw new DuplicateUserException();
+		}
+	}
+
+	@Override
+	public User addChildForUser(String id, Child childs) {
+		User user =findUserById(id);
+		if(user!=null){
+			validate(childs);
+			user.getChildren().add(childs);
+		}else{
+			throw new UserNotFoundException();
+		}
+		return user;
 	}
 
 }

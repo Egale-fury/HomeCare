@@ -1,5 +1,6 @@
 package com.eagle.community.user.service;
 
+import com.eagle.community.user.entity.Child;
 import com.eagle.community.user.entity.User;
 
 public interface UserService {
@@ -15,5 +16,6 @@ public interface UserService {
 	
 	public User findUserById(String id);
 	
+	public User addChildForUser(String id,Child childs);
 	
 }

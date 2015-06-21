@@ -113,7 +113,7 @@
 			<artifactId>spring-webmvc-portlet</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
@@ -154,6 +154,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
 			<version>${hibernate.version}</version>
@@ -172,12 +178,6 @@
 			<version>5.1.35</version>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.1.0.Final</version>
-			<scope>provided</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>javax</groupId>

@@ -1,8 +1,11 @@
 package com.eagle.community.advice;
 
 
+import javax.validation.ConstraintViolationException;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.eagle.community.api.ErrorResponse;
 import com.eagle.community.exception.ApplicationRuntimeException;
 import com.eagle.community.exception.BaseWebApplicationException;
+import com.eagle.community.exception.ValidationException;
 
 
 //专门来处理在@RequestMapping注释过的方法中出现的异常
@@ -26,6 +30,21 @@ public class ResourceAdvice {
 		logger.error(e.getDeveloperMessage(),e);
 		return e.getErrorResponse();
 	}
+	
+	@ExceptionHandler(ConstraintViolationException.class)
+	@ResponseBody
+	public ErrorResponse processConstraintViolationException(ConstraintViolationException e) {
+		logger.error(e.getMessage());
+		return new ValidationException(e.getConstraintViolations()).getErrorResponse();
+	}
+	
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	@ResponseBody
+	public ErrorResponse processHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+		logger.error(e.getMessage());
+		return new ValidationException("请求实体格式有误").getErrorResponse();
+	}
+	
 	
 	@ExceptionHandler(Exception.class)
 	@ResponseBody

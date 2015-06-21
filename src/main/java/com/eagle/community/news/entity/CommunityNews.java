@@ -9,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.DefaultValue;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "HBC_community_news")
@@ -28,9 +30,11 @@ public class CommunityNews implements Serializable {
 	private long id;
 
 	@Column(name = "title", length = 100)
+	@NotBlank(message="标题不能为空")
 	private String title;
 
 	@Column(name = "date")
+	@NotNull
 	private Date date;
 
 	@Column(name = "author_name", length = 20)
@@ -38,6 +42,7 @@ public class CommunityNews implements Serializable {
 
 	@Column(name = "article")
 	@Type(type = "text")
+	@NotBlank(message="还没有编辑正文内容")
 	private String article;
 
 	@Column(name = "count")

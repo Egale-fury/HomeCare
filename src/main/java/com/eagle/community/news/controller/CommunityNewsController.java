@@ -37,7 +37,7 @@ public class CommunityNewsController {
 	// 创建一个CommunityNew并存到到数据库中的请求，成功返回创建的新对象
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public @ResponseBody CommunityNews createNews(
+	public @ResponseBody CommunityNews createNews(//尚未做权限控制
 			@RequestBody CommunityNews newNews) {
 		Date currentTime = new Date(System.currentTimeMillis());
 		newNews.setDate(currentTime);
@@ -125,6 +125,7 @@ public class CommunityNewsController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public @ResponseBody CommunityNews updateNews(
 			@RequestBody CommunityNews newNews) {
+		logger.info("controller updateNews method is invoked ");
 		CommunityNews news = communityNewsService.updateNews(newNews);
 		return news;
 	}

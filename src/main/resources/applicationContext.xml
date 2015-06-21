@@ -15,8 +15,14 @@
 	<context:component-scan base-package="com.eagle.community.news.*"></context:component-scan>
 	<context:component-scan base-package="com.eagle.community.admin.*"></context:component-scan>
 	<context:component-scan base-package="com.eagle.community.user.*"></context:component-scan>
+	<context:component-scan base-package="com.eagle.community.service"></context:component-scan>
 
 
+
+	<!-- 配置JSR-303验证 -->
+
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
 	<!-- hibernate datasource sessionFactory -->
 	<import resource="classpath:persistence-context.xml" />

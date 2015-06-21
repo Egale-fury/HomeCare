@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
 import org.springframework.stereotype.Service;
 
 import com.eagle.community.news.dao.CommunityNewsDao;
@@ -16,6 +15,7 @@ import com.eagle.community.news.entity.Pagination;
 import com.eagle.community.news.exception.DuplicateNewsException;
 import com.eagle.community.news.exception.NewsNotFoundException;
 import com.eagle.community.news.exception.NoNewsException;
+import com.eagle.community.service.BaseService;
 
 /*
  * @author dpc
@@ -25,7 +25,7 @@ import com.eagle.community.news.exception.NoNewsException;
 
 @Service("communityNewsService")
 @Transactional
-public class CommunityNewServiceImpl implements CommunityNewsService {
+public class CommunityNewServiceImpl extends BaseService implements CommunityNewsService {
 
 	private static final Logger logger = LogManager
 			.getLogger(CommunityNewServiceImpl.class);
@@ -35,6 +35,8 @@ public class CommunityNewServiceImpl implements CommunityNewsService {
 
 	@Override
 	public CommunityNews saveNews(CommunityNews news) {
+		logger.info("validate news");
+		validate(news);
 		CommunityNews temp = communityNewsDao.find(news.getId());
 		if (temp != null) {
 			logger.info("communityNews already exists ,cannot create again !");
@@ -48,6 +50,7 @@ public class CommunityNewServiceImpl implements CommunityNewsService {
 
 	@Override
 	public CommunityNews updateNews(CommunityNews news) {
+			validate(news);
 			communityNewsDao.update(news);
 			return news;
 		

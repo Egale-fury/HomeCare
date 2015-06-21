@@ -1,5 +1,7 @@
 package com.eagle.community.user.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.LogManager;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.eagle.community.dao.BaseDaoImpl;
+import com.eagle.community.user.entity.Child;
 import com.eagle.community.user.entity.User;
 import com.eagle.community.user.service.UserService;
 
@@ -35,23 +38,31 @@ public class UserController {
 		return user;
 	}
 
-	//创建一个新用户的请求
+	// 创建一个新用户的请求
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody User createUser(@RequestBody User user) {
+		user.setBitrhday(new Date(System.currentTimeMillis()));
 		User temp = userServcie.createUser(user);
 		return temp;
 	}
 
-	
-	//更新一个已有的用户信息的
-	@RequestMapping(value="/update",method=RequestMethod.POST)//没有使用put是因为不同浏览器支持的原因
+	// 更新一个已有的用户信息的
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	// 没有使用put是因为不同浏览器支持的原因
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody User updateUser(@RequestBody User user){
+	public @ResponseBody User updateUser(@RequestBody User user) {
 		User temp = userServcie.updateUser(user);
 		return temp;
 	}
-	
+
+	// 为某个用户添加子女信息
+	@RequestMapping(value = "/{id}/addChild", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody User addChild(@PathVariable("id") String id, @RequestBody Child childs) {
+		return userServcie.addChildForUser(id, childs);
+	}
+
 	public UserService getUserServcie() {
 		return userServcie;
 	}

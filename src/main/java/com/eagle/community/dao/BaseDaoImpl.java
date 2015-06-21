@@ -27,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @implementation of BaseDao 
  * abstract class for explicit xxxDaoImpl
  * */
-@Transactional
 public abstract class BaseDaoImpl<T, ID extends Serializable> implements
 		BaseDao<T, ID> {
 
@@ -44,7 +43,7 @@ public abstract class BaseDaoImpl<T, ID extends Serializable> implements
 		Type[] actualTypes = ((ParameterizedType) type)
 				.getActualTypeArguments();
 		this.clazz = (Class<T>) actualTypes[0];
-		this.pkName = analysePKName(this.clazz,"id");
+		this.pkName = analysePKName(this.clazz, "id");
 	}
 
 	private String analysePKName(Class claz, String defaultName) {
@@ -142,7 +141,7 @@ public abstract class BaseDaoImpl<T, ID extends Serializable> implements
 		orderDesc(criteria, desc);
 		return criteria.list();
 	}
-	
+
 	public void update(T entity) {
 		getSession().update(entity);
 	}
