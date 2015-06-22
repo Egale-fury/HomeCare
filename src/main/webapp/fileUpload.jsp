@@ -1,32 +1,31 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML>
-<html lang="zh-cn">
-
-<head>
 <meta charset="UTF-8">
-<title>ueditor demo</title>
-<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-<script
-	src="http://cdn.bootcss.com/jquery-json/2.5.1/jquery.json.min.js"></script>
-</head>
+<!-- 编辑器配置-->
+<script id="container" name="content" type="text/plain"></script>
+<!-- 配置文件 -->
+<script type="text/javascript" src="./ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="./ueditor/ueditor.all.js"></script>
 
-<body>
-	<!-- 加载编辑器的容器 -->
-	<script id="container" name="content" type="text/plain">
-       
-    </script>
-	<!-- 配置文件 -->
-	<script type="text/javascript" src="ueditor/ueditor.config.js"></script>
-	<!-- 编辑器源码文件 -->
-	<script type="text/javascript" src="ueditor/ueditor.all.js"></script>
-	<!-- 实例化编辑器 -->
-	<script type="text/javascript">
-		var ue = UE.getEditor('container')
-	</script>
+
+		
 
 	<p>
 		<button onclick="e();">点击</button>
 	</p>
+	<p>
+		<button onclick="t();">点击测试编辑器</button>
+	</p>
+
+	
+	<div id="edit">
+		
+	</div>
 	<script type="text/javascript">
 		function e() {
 			var data = {};
@@ -49,6 +48,12 @@
 			});
 		}
 	</script>
-</body>
+	
+	<script type="text/javascript">
+	function t(){
+		 ue = UE.getEditor('container')
+			ue.render("edit"); 
+	}
 
-</html>
+	
+	</script>
