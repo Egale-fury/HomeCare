@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h3>社区动态</h3>
 		<ul class="toggle">
 			<li class="icn_new_article"><a 
-				href="<%= basePath%>common/addarticle.jsp" >新添动态</a></li>
+				href="" >新添动态</a></li>
 			<li class="icn_edit_article"><a href="#">编辑</a></li>
 			<li class="icn_categories"><a href="test.jsp">查看</a></li>
 			<!--<li class="icn_tags"><a href="#">Tags</a></li> -->

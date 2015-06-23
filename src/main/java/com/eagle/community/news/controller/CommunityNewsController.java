@@ -115,4 +115,10 @@ public class CommunityNewsController {
 		return "addmessage";
 	}
 	
+	//开始添加
+	public String startAddNews(){
+		return "admin/addNews";
+	}
+	
+	
 }
