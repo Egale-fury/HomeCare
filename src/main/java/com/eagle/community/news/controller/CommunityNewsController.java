@@ -75,6 +75,14 @@ public class CommunityNewsController {
 		return communityNewsService.getNewsById(id);
 
 	}
+	
+	//一次性查询指定条数的社区动态并返回json
+	@RequestMapping(value="/some/{num}")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody List<CommunityNews> getSomeNewsJson(@PathVariable("num")int num){
+		logger.info("getSomeNews is invoked !");
+		return communityNewsService.getNews(num);
+	}
 
 	// 删除一条communityNews,返回204表示删除成功
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

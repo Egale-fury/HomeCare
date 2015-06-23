@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 //管理员用户实体类
 @Entity
@@ -20,9 +21,11 @@ public class Admin {
 	private int id;
 	
 	@Column(name="user_name",length=20)
+	@NotNull(message="用户名不能为空")
 	private String userName;
 	
 	@Column(name="password",length=20)
+	@NotNull(message="密码不能为空s")
 	private String password;
 	
 	@Column(name="last_login_ip",length=15)

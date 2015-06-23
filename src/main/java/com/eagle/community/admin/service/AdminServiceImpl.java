@@ -11,9 +11,10 @@ import com.eagle.community.admin.entity.Admin;
 import com.eagle.community.admin.exception.AdminNotFoundException;
 import com.eagle.community.admin.exception.AuthenticationException;
 import com.eagle.community.news.service.CommunityNewServiceImpl;
+import com.eagle.community.service.BaseService;
 
 @Service("adminService")
-public class AdminServiceImpl implements AdminService {
+public class AdminServiceImpl extends BaseService implements AdminService  {
 
 	private static final Logger logger = LogManager
 			.getLogger(AdminServiceImpl.class);
@@ -34,17 +35,11 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Admin updateAdminInfo(Admin admin) {
-		Admin temp =adminDao.find(admin.getId());
-		if(temp!=null){
-			adminDao.update(admin);
-			return admin;
-		}else{
-			logger.info("该管理员不存在，无法进行修改 !");
-			throw new AdminNotFoundException();
-		}
+		validate(admin);
+		adminDao.update(admin);
+		return admin;
 	}
 	
+	
 
-	
-	
 }

@@ -44,10 +44,10 @@
 </head>
 <body>
 	<div id="head_content">
-		<jsp:include page="./common/head.jsp"></jsp:include>
+		<jsp:include page="head.jsp"></jsp:include>
 	</div>
 	<div id="sidebar_content">
-		<jsp:include page="./common/sidebar.jsp"></jsp:include>
+		<jsp:include page="sidebar.jsp"></jsp:include>
 	</div>
 	<div id="main_content">
 		
