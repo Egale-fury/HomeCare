@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.community.dao.BaseDaoImpl;
 import com.eagle.community.news.entity.CommunityNews;
+import com.eagle.community.news.entity.Pagination;
 import com.eagle.community.news.service.CommunityNewsService;
 
 @Controller
@@ -120,7 +121,7 @@ public class CommunityNewsController {
 	//一次性查询指定条数的社区动态并返回json
 	@RequestMapping(value="/index/{num}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody ModelAndView getIndexJson(@PathVariable("num")int num){
+	public  ModelAndView getIndexJson(@PathVariable("num")int num){
 		ModelAndView view = new ModelAndView("user/index");
 		List<CommunityNews> list = communityNewsService.getNews(num);
 		view.addObject("IndexNews", list);
@@ -135,7 +136,7 @@ public class CommunityNewsController {
 	
 	//返回具体新闻内容
 	@RequestMapping(value="/newscontent",method=RequestMethod.GET)
-	public  ModelAndView getContentNews(int id){
+	public  ModelAndView getContentNews(long id){
 		ModelAndView model = new ModelAndView("user/newscontent");
 		CommunityNews news  = communityNewsService.getNewsById(id);
 		model.addObject("newscontent", news);
@@ -143,7 +144,14 @@ public class CommunityNewsController {
 	}
 	
 
-	
+	//返回一页的新闻请求
+	@RequestMapping(value="/communityNews/")
+	public ModelAndView getOnPageNews(int currentPage,int pageSize){
+		ModelAndView view =new ModelAndView("");
+		Pagination pagination =communityNewsService.getNews(currentPage, pageSize, true);
+		view.addObject("pageInfo",pagination);
+		return view;
+	}
 	
 	
 	
