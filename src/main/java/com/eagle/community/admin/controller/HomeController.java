@@ -37,7 +37,7 @@ public class HomeController {
 //		// 修改管理员的登录信息
 //		temp.set
 
-		ModelAndView view = new ModelAndView("admin/main");// 默认的管理员操作主界面在views/admin目录下
+		ModelAndView view = new ModelAndView("admin/backmanage");// 默认的管理员操作主界面在views/admin目录下
 		view.addObject("admin", temp);
 		return view;
 	}

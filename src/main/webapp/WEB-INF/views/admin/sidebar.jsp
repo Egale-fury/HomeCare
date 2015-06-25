@@ -9,14 +9,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title>侧边栏</title>
-<link rel="stylesheet" href="../css/layout.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<%=basePath %>css/layout.css" type="text/css" media="screen" />
 </head>
 <body>
 		<div id="sidebar">
 		<h3>社区动态</h3>
 		<ul class="toggle">
 			<li class="icn_new_article"><a 
-				href="" >新添动态</a></li>
+				href="${pageContext.request.contextPath}/communityNews/add">新添动态</a></li>
 			<li class="icn_edit_article"><a href="#">编辑</a></li>
 			<li class="icn_categories"><a href="test.jsp">查看</a></li>
 			<!--<li class="icn_tags"><a href="#">Tags</a></li> -->

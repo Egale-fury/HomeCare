@@ -115,10 +115,36 @@ public class CommunityNewsController {
 		return "addmessage";
 	}
 	
+	
+	// 获取首页
+	//一次性查询指定条数的社区动态并返回json
+	@RequestMapping(value="/index/{num}")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody ModelAndView getIndexJson(@PathVariable("num")int num){
+		ModelAndView view = new ModelAndView("user/index");
+		List<CommunityNews> list = communityNewsService.getNews(num);
+		view.addObject("IndexNews", list);
+		return view;
+	}
+	
 	//开始添加
+	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String startAddNews(){
 		return "admin/addNews";
 	}
+	
+	//返回具体新闻内容
+	@RequestMapping(value="/newscontent",method=RequestMethod.GET)
+	public  ModelAndView getContentNews(int id){
+		ModelAndView model = new ModelAndView("user/newscontent");
+		CommunityNews news  = communityNewsService.getNewsById(id);
+		model.addObject("newscontent", news);
+		return model;
+	}
+	
+
+	
+	
 	
 	
 }
