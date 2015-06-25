@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 </div>
 				 <hr class="firstline" />
 				 <ul style="padding-right: 4px">
-				 <c:forEach items="${IndexNews}" var="list">
+				 <c:forEach items="${IndexNews}" var="list">					
 					<li><a class="b"  href="${pageContext.request.contextPath}/communityNews/newscontent?id=${list.id} ">${list.title}</a>
 					 <div class="timelocate">
 				      <span >${list.date}</span>

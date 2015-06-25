@@ -64,9 +64,9 @@ public class CommunityNewsController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView getNews(@PathVariable("id") int id) {
 		logger.info("/communityNews/getNews  is invoked ");
-		ModelAndView view = new ModelAndView("show_news");
+		ModelAndView view = new ModelAndView("user/newscontent");
 		CommunityNews news = communityNewsService.getNewsById(id);
-		view.addObject("current_news", news);
+		view.addObject("newscontent", news);
 		return view;
 	}
 
