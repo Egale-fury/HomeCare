@@ -25,7 +25,8 @@ import com.eagle.community.service.BaseService;
 
 @Service("communityNewsService")
 @Transactional
-public class CommunityNewServiceImpl extends BaseService implements CommunityNewsService {
+public class CommunityNewServiceImpl extends BaseService implements
+		CommunityNewsService {
 
 	private static final Logger logger = LogManager
 			.getLogger(CommunityNewServiceImpl.class);
@@ -50,10 +51,10 @@ public class CommunityNewServiceImpl extends BaseService implements CommunityNew
 
 	@Override
 	public CommunityNews updateNews(CommunityNews news) {
-			validate(news);
-			communityNewsDao.update(news);
-			return news;
-		
+		validate(news);
+		communityNewsDao.update(news);
+		return news;
+
 	}
 
 	@Override
@@ -97,17 +98,21 @@ public class CommunityNewServiceImpl extends BaseService implements CommunityNew
 
 	// 带分页获得某一页的社区动态新闻
 	@Override
-	public Pagination getNews(int currentPage, int pageSize,
-			boolean desc) {
-		int totalCount =getTotalCount();
-		Pagination pagination=new Pagination(currentPage,pageSize,totalCount);
+	public Pagination getNews(int currentPage, int pageSize, boolean desc) {
+		int totalCount = getTotalCount();
+		Pagination pagination = new Pagination(currentPage, pageSize,
+				totalCount);
 		List<CommunityNews> list = communityNewsDao.list(currentPage, pageSize,
 				desc);
 		if (list.size() == 0) {
 			logger.info("暂时还没有添加社区动态消息");
 			throw new NoNewsException();
-		} else{
-			pagination.setTotalPages(totalCount%pageSize+1);
+		} else {
+			if (totalCount % pageSize == 0) {
+				pagination.setTotalPages(totalCount / pageSize );
+			} else {
+				pagination.setTotalPages(totalCount / pageSize+1 );
+			}
 			pagination.setNews(list);
 			return pagination;
 		}

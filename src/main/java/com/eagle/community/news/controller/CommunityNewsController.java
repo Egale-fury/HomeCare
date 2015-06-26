@@ -30,7 +30,7 @@ public class CommunityNewsController {
 	private CommunityNewsService communityNewsService;
 
 	private static final Logger logger = LogManager
-			.getLogger(BaseDaoImpl.class);
+			.getLogger(CommunityNewsController.class);
 
 	// 创建一个CommunityNew并存到到数据库中的请求，成功返回创建的新对象
 	@RequestMapping(method = RequestMethod.POST)
@@ -143,9 +143,8 @@ public class CommunityNewsController {
 		return model;
 	}
 	
-
-	//返回一页的新闻请求
-	@RequestMapping(value="/communityNews/{currentPage}/{pageSize}")
+	// 返回一页的新闻请求
+	@RequestMapping(value = "/{currentPage}/{pageSize}")
 	public ModelAndView getOnPageNews(@PathVariable("currentPage")int currentPage,@PathVariable("pageSize")int pageSize){
 		ModelAndView view =new ModelAndView("");
 		Pagination pagination =communityNewsService.getNews(currentPage, pageSize, true);
