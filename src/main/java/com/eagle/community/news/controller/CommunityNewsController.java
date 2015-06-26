@@ -145,11 +145,11 @@ public class CommunityNewsController {
 	
 
 	//返回一页的新闻请求
-	@RequestMapping(value="/communityNews/")
-	public ModelAndView getOnPageNews(int currentPage,int pageSize){
+	@RequestMapping(value="/communityNews/{currentPage}/{pageSize}")
+	public ModelAndView getOnPageNews(@PathVariable("currentPage")int currentPage,@PathVariable("pageSize")int pageSize){
 		ModelAndView view =new ModelAndView("");
 		Pagination pagination =communityNewsService.getNews(currentPage, pageSize, true);
-		view.addObject("pageInfo",pagination);
+		view.addObject("communityNews_pageInfo",pagination);
 		return view;
 	}
 	
