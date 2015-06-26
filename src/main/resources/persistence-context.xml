@@ -66,6 +66,7 @@
 				<value>com.eagle.community.user.entity</value>
 				<value>com.eagle.community.news.entity</value>
 				<value>com.eagle.community.admin.entity</value>
+				<value>com.eagle.community.health_tip.entity</value>
 
 			</list>
 		</property>

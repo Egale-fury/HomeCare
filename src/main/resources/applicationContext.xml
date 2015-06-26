@@ -16,6 +16,7 @@
 	<context:component-scan base-package="com.eagle.community.news.*"></context:component-scan>
 	<context:component-scan base-package="com.eagle.community.admin.*"></context:component-scan>
 	<context:component-scan base-package="com.eagle.community.user.*"></context:component-scan>
+	<context:component-scan base-package="com.eagle.community.health_tip.*"></context:component-scan>
 	<context:component-scan base-package="com.eagle.community.service"></context:component-scan>
 
 
