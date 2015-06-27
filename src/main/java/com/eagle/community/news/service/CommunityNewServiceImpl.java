@@ -115,6 +115,7 @@ public class CommunityNewServiceImpl extends BaseService implements
 			}
 			pagination.setNews(list);
 			return pagination;
+			
 		}
 	}
 

@@ -60,11 +60,11 @@ public class CommunityNewsController {
 		return communityNewsService.getAllNews();
 	}
 
-	// 处理查询某条社区动态的请求，并返回jsp视图
+	// 处理查询某条社区动态的请求，并返回jsp视图(具体新闻)
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView getNews(@PathVariable("id") int id) {
 		logger.info("/communityNews/getNews  is invoked ");
-		ModelAndView view = new ModelAndView("user/newscontent");
+		ModelAndView view = new ModelAndView("main/newscontent");
 		CommunityNews news = communityNewsService.getNewsById(id);
 		view.addObject("newscontent", news);
 		return view;
@@ -90,7 +90,7 @@ public class CommunityNewsController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public void deleteNews(@PathVariable("id") int id) {
 		logger.info("/communityNews/{id} delete is invoked ");
-		CommunityNews news = communityNewsService.getNewsById(id);
+		CommunityNews news =  communityNewsService.getNewsById(id);
 		if (news != null) {
 			if(communityNewsService.deleteNews(news))
 				logger.info("delete communityNews success");
@@ -119,13 +119,11 @@ public class CommunityNewsController {
 	
 	// 获取首页
 	//一次性查询指定条数的社区动态并返回json
-	@RequestMapping(value="/index/{num}")
+	@RequestMapping(value="/index/{num}",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public  ModelAndView getIndexJson(@PathVariable("num")int num){
-		ModelAndView view = new ModelAndView("user/index");
+	public @ResponseBody List<CommunityNews> getIndexJson(@PathVariable("num")int num){
 		List<CommunityNews> list = communityNewsService.getNews(num);
-		view.addObject("IndexNews", list);
-		return view;
+		return list;
 	}
 	
 	//开始添加
@@ -134,23 +132,26 @@ public class CommunityNewsController {
 		return "admin/addNews";
 	}
 	
-	//返回具体新闻内容
-	@RequestMapping(value="/newscontent",method=RequestMethod.GET)
-	public  ModelAndView getContentNews(long id){
-		ModelAndView model = new ModelAndView("user/newscontent");
-		CommunityNews news  = communityNewsService.getNewsById(id);
-		model.addObject("newscontent", news);
+	//请求社区动态栏的信息
+	@RequestMapping(value="/ConmunityService/{id}",method=RequestMethod.GET)
+	public   ModelAndView getConmunityService(@PathVariable("id") int id){
+		ModelAndView model = new ModelAndView("main/communityservice");
+		List<CommunityNews> list = communityNewsService.getNews(id);
+		model.addObject("CSnews", list);
 		return model;
+		
 	}
 	
+
+	
 	// 返回一页的新闻请求
-	@RequestMapping(value = "/{currentPage}/{pageSize}")
+	@RequestMapping(value="/listNews/{currentPage}/{pageSize}")
 	public ModelAndView getOnPageNews(@PathVariable("currentPage")int currentPage,@PathVariable("pageSize")int pageSize){
-		ModelAndView view =new ModelAndView("");
-		Pagination pagination =communityNewsService.getNews(currentPage, pageSize, true);
+	 	ModelAndView view =new ModelAndView("main/listnews");
+	 	Pagination pagination =communityNewsService.getNews(currentPage, pageSize, true);
 		view.addObject("communityNews_pageInfo",pagination);
-		return view;
-	}
+	 	return view;
+	 	}
 	
 	
 	
