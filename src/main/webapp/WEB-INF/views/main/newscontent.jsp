@@ -7,10 +7,12 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <html>
 <head>
 <title></title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
+
 <style type="text/css">
 body {
 	margin: 0;
@@ -254,12 +256,12 @@ a.location {
 		<div id="main">
 			<div class="locationinfo">
 				<span style="font-size: 12pt">当前位置: ><a class="location"
-					href="./communityservice.jsp">社区动态</a><span
+					href="/Home-BasedCare/communityNews/listNews/0/15"">社区动态</a><span
 					style="font-size: 12pt">>正文</span></span>
 			</div>
 			<div id="content">
 				<div class="articletitle">${newscontent.title}</div>
-				<div class="dateandauthor">日期：${newscontent.date}
+				<div class="dateandauthor">日期： <fmt:formatDate value="${newscontent.date}" pattern="yyyy-MM-dd"/>
 					【信息来源】作者：${newscontent.authorName}</div>
 				<div id="articlecontent">${newscontent.article}</div>
 			</div>
