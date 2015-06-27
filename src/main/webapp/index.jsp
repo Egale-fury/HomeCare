@@ -92,11 +92,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="info" >
 		     <!--社区动态  -->
 		     <div class="communityservice">
-		    
-		    	<c:import url="/communityNews/ConmunityService/6">
-		    	</c:import>
-
-				
+			    	<c:import url="/communityNews/ConmunityService/6">
+		    	    </c:import>
 				 
 		   </div>
 			

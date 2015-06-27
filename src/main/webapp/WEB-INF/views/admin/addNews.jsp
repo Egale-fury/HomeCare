@@ -33,7 +33,7 @@
 #sidebar_content {
 	width: 23%;
 	margin-top: -6px;
-	height: 680px;
+	height: 745px;
 	background: #E0E0E3 url(../img/sidebar.png) repeat;
 	float: left;
 	min-height: 500px;
@@ -41,9 +41,11 @@
 
 #main_content {
 	width: 77%;
-	height: 680px;
+	min-height: 720px;
+	overflow:auto;
 	margin-top: -6px;
 	float: left;
+	padding-top:20px;
 	background-color: #F5F5F5;
 }
 
@@ -60,7 +62,6 @@
 	width: 80%;
 	height: 8%;
 	left: 10%;
-	top: 5%;
 	background-color: #F5F5F5;
 }
 
@@ -69,10 +70,15 @@
 	width: 80%;
 	height: 8%;
 	left: 10%;
-	margin-top: 5%;
+	margin-top: 20px;
 	background-color: #F5F5F5;
 }
-
+#ueditor_div{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-top: 10px;
+}
 span {
 	position: relative;
 	width: 10%;
@@ -103,15 +109,13 @@ input {
 	margin-top: 3%;
 	background-color: white;
 }
-#edui1_iframeholder{
-	height:390px ! important;
-}
 #submit_div{
 	position: relative;
 	margin: 50px auto;
 	width: 90px;
 	height: 30px;
 }
+
 #sub{
 	position: relative;
 	width: 100%;
@@ -119,7 +123,7 @@ input {
 	font-size: 15pt;
 	background-color: #4169E1;
 	cursor:pointer;
-}
+} 
 </style>
 </head>
 <body>
@@ -138,9 +142,9 @@ input {
 			<div id="author_div">
 				<span>作者</span> &nbsp;&nbsp; <input type="text" id="author" name="author">
 			</div>
-			<div >
+			<div id="ueditor_div">
 				<!-- 编辑器配置-->
-				<script id="container" name="content" type="text/plain"></script>
+				
 			</div>
 		</div>
 		<div id="submit_div">
@@ -151,14 +155,21 @@ input {
 	</div>
 
 	<script type="text/javascript">
-	
-		function e() {
-			ue = UE.getEditor('container');
-			console.log("success");
-			// ue.render("ueditor"); 
-		}
-		//加载完页面自动调用一下函数 
-		window.onload = e;
+	   var editor = new UE.ui.Editor({ initialFrameHeight:400,initialFrameWidth:950,
+		   toolbars: [
+	      [  'undo', 'redo', 'bold','indent','snapscreen','italic',
+	         'underline','selectall','print','preview','time','date',
+	         'cleardoc','fontfamily','fontsize','paragraph', 'simpleupload',
+	         'insertimage', 'link','emotion','spechars', 'searchreplace','insertvideo',
+	         'justifyleft','justifyright','justifycenter', 'justifyjustify','forecolor',
+	         'backcolor','pagebreak','imageleft','imageright','attachment','imagecenter',
+	         'wordimage','lineheight','edittip ','touppercase','tolowercase','background',
+	         'template', 'scrawl','inserttable','charts',
+	         
+	         ]
+	         ] });
+	   editor.render("ueditor_div");
+
 
 	
 	// 上传社区新文 
@@ -173,6 +184,7 @@ input {
 				data:JSON.stringify(com()),
 				success : function(data) {
 					console.log(data);
+					window.location.href = "/Home-BasedCare/communityNews/success";
 				},
 				error : function(status) {
 					comsole.log("failure");
@@ -182,7 +194,7 @@ input {
 		function com(){
 			var json= {
 			 "title":$("#title").val(),
-		     "article": ue.getContent(),
+		     "article": editor.getContent(),
 			 "authorName":$("#author").val()
 			};
 			return json;

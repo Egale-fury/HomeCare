@@ -17,28 +17,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<ul class="toggle">
 			<li class="icn_new_article"><a 
 				href="${pageContext.request.contextPath}/communityNews/add">新添动态</a></li>
-			<li class="icn_edit_article"><a href="#">编辑</a></li>
-			<li class="icn_categories"><a href="test.jsp">查看</a></li>
+			<li class="icn_categories"><a href="${pageContext.request.contextPath}/communityNews/query">查看</a></li>
 			<!--<li class="icn_tags"><a href="#">Tags</a></li> -->
 		</ul>
 		<h3>服务信息</h3>
 		<ul class="toggle">
 			<li class="icn_new_article"><a href="#">新添信息</a></li>
-			<li class="icn_edit_article"><a href="#">编辑</a></li>
 			<li class="icn_categories"><a href="#">查看</a></li>
 			<!--<li class="icn_tags"><a href="#">Tags</a></li> -->
 		</ul>
 		<h3>健康知识</h3>
 		<ul class="toggle">
 			<li class="icn_new_article"><a href="#">新添知识</a></li>
-			<li class="icn_edit_article"><a href="#">编辑</a></li>
 			<li class="icn_categories"><a href="#">查看</a></li>
 			<!--<li class="icn_tags"><a href="#">Tags</a></li>-->
 		</ul>
 		<h3>文化娱乐</h3>
 		<ul class="toggle">
 			<li class="icn_new_article"><a href="#">新添信息</a></li>
-			<li class="icn_edit_article"><a href="#">编辑</a></li>
 			<li class="icn_categories"><a href="#">查看</a></li>
 			<!--<li class="icn_tags"><a href="#">Tags</a></li>-->
 		</ul>
@@ -52,8 +48,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div>
 			<hr />
 			<p>
-				<strong>版权所有：太仓市城厢镇德兴社区 Copyright @ 2012-2014 All Rights
-					Reserved 苏ICP备10218904号</strong>
+				<h2>版权所有：太仓市城厢镇德兴社区 Copyright @ 2012-2014 All Rights
+					Reserved 苏ICP备10218904号</h2>
 			</p>
 		</div>
 	    </div>
