@@ -125,12 +125,7 @@ public class CommunityNewsController {
 		List<CommunityNews> list = communityNewsService.getNews(num);
 		return list;
 	}
-	
-	//开始添加
-	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public String startAddNews(){
-		return "admin/addNews";
-	}
+
 	
 	//请求社区动态栏的信息
 	@RequestMapping(value="/ConmunityService/{id}",method=RequestMethod.GET)
@@ -153,6 +148,31 @@ public class CommunityNewsController {
 	 	return view;
 	 	}
 	
+	//后台数据提交跳转到的成功界面
+	@RequestMapping(value="/success",method=RequestMethod.GET)
+	public String getSuccess(){
+		return "admin/success";
+	}
 	
+	//新建动态的链接
+	@RequestMapping(value="/add",method=RequestMethod.GET)
+	public String startAddNews(){
+		return "admin/addNews";
+	}
+	
+	//查看的链接
+		@RequestMapping(value="/query",method=RequestMethod.GET)
+		public String queryNews(){
+			return "admin/querynews";
+		}
+	
+	//查看链接的分页部分
+	@RequestMapping(value="/query/{currentPage}/{pageSize}",method=RequestMethod.GET)
+	public ModelAndView queryNews(@PathVariable("currentPage")int currentPage,@PathVariable("pageSize")int pageSize){
+		ModelAndView view =new ModelAndView("admin/alistnews");
+	 	Pagination pagination =communityNewsService.getNews(currentPage, pageSize, true);
+		view.addObject("admin_communityNews_pageInfo",pagination);
+	 	return view;
+	}
 	
 }
