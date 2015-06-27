@@ -106,10 +106,14 @@ public class CommunityNewServiceImpl extends BaseService implements CommunityNew
 		if (list.size() == 0) {
 			logger.info("暂时还没有添加社区动态消息");
 			throw new NoNewsException();
-		} else{
-			pagination.setTotalPages(totalCount%pageSize+1);
-			pagination.setNews(list);
-			return pagination;
+		} else {
+				if (totalCount % pageSize == 0) {
+					pagination.setTotalPages(totalCount / pageSize );
+				} else {
+					pagination.setTotalPages(totalCount / pageSize+1 );
+				}
+		    pagination.setNews(list);
+		    return pagination;
 		}
 	}
 

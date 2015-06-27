@@ -137,7 +137,7 @@ public abstract class BaseDaoImpl<T, ID extends Serializable> implements
 	public List<T> list(int pageIndex, int pageSize, boolean desc) {
 		Criteria criteria = getSession().createCriteria(clazz);
 		criteria.setMaxResults(pageSize);
-		criteria.setFirstResult(pageIndex * pageSize);
+        criteria.setFirstResult(pageIndex * pageSize);
 		orderDesc(criteria, desc);
 		return criteria.list();
 	}
