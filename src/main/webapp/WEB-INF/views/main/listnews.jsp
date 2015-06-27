@@ -6,6 +6,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 
 <html>
   <head>
@@ -62,7 +63,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 		<c:forEach items="${communityNews_pageInfo.news}" var="list">
 	 			<li class="infoli"><img  src="<%=basePath %>img/arrow1.png" >
 	 			   <a class="b" href="${pageContext.request.contextPath}/communityNews/${list.id}">${list.title }</a>
-	 			   <div class="date">${list.date }</div>
+	 			   <div class="date"> <fmt:formatDate value="${list.date}" pattern="yyyy-MM-dd"/>
+	 			   </div>
 	 			 </li>
 			</c:forEach>
 	 		</ul>

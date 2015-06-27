@@ -5,6 +5,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -77,6 +78,9 @@ a.a {
 	margin-top: 10px;
 }
 </style>
+
+
+
 </head>
 <body>
 	<div class="communityservice_div">
@@ -89,7 +93,9 @@ a.a {
 			 <c:forEach items="${CSnews}" var="list">					
 					<li><a class="b"  href="${pageContext.request.contextPath}/communityNews/${list.id} ">${list.title}</a>
 					 <div class="timelocate">
-				      <span >${list.date}</span>
+				      <span >
+				      <fmt:formatDate value="${list.date}" pattern="yyyy-MM-dd"/>
+				     </span>
 				     </div>
 					</li>
 					<hr class="remainline"/>
@@ -97,6 +103,7 @@ a.a {
 					</c:forEach> 
 		</ul>
 	</div>
+	
 
 </body>
 </html>
