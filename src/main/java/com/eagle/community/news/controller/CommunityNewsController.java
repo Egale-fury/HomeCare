@@ -86,7 +86,7 @@ public class CommunityNewsController {
 	}
 
 	// 删除一条communityNews,返回204表示删除成功
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void deleteNews(@PathVariable("id") int id) {
 		logger.info("/communityNews/{id} delete is invoked ");
