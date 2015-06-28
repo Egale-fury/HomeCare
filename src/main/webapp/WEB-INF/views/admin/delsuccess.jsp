@@ -6,7 +6,6 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,9 +13,6 @@
 <link rel="stylesheet" href="<%=basePath %>css/layout.css" type="text/css"
 	media="screen" />
 <script src="<%=basePath %>js/back/jquery-1.5.2.min.js"></script>
-
-
-
 
 <style type="text/css">
 #head_content {
@@ -28,21 +24,26 @@
 	width: 23%;
 	margin-top: -6px;
 	height: 745px;
-	background: #E0E0E3 url(<%=basePath %>img/sidebar.png) repeat;
+	background: #E0E0E3 url(../img/sidebar.png) repeat;
 	float: left;
 	min-height: 500px;
 }
 
 #main_content {
-    position:relative;
 	width: 77%;
-	min-height: 720px;
-	overflow:auto;
+	height: 680px;
 	margin-top: -6px;
 	float: left;
-	padding-top:20px;
-	background-color: #F5F5F5;
+	background-color: #fff;
 }
+#success_div{
+    position:relative;
+    margin:300px auto;
+	width: 300px;
+	height: 125px;
+	background-image: url(<%=basePath %>img/deletesuccess.png)
+}
+
 
 </style>
 </head>
@@ -54,9 +55,11 @@
 		<jsp:include page="./sidebar.jsp"></jsp:include>
 	</div>
 	<div id="main_content">
-		<c:import url="/communityNews/query/0/9">
-		</c:import>
+		<div id="success_div"></div>
 	</div>
+
+
 	
+
 </body>
 </html>

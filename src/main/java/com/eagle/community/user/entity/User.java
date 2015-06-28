@@ -8,13 +8,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.annotations.Cascade;
-
+import com.eagle.community.health_profile.entity.HealthProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -75,6 +77,10 @@ public class User {
 	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JsonProperty
 	private Set<Child> children;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="health_profile_id")
+	private HealthProfile healthProfile;
 
 	public String getId() {
 		return id;
@@ -188,6 +194,18 @@ public class User {
 		this.children = children;
 	}
 
+	
+	
+	public HealthProfile getHealthProfile() {
+		return healthProfile;
+	}
+
+	public void setHealthProfile(HealthProfile healthProfile) {
+		this.healthProfile = healthProfile;
+	}
+	
+	
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", realName=" + realName + ", password="
@@ -196,35 +214,15 @@ public class User {
 				+ ", birthPlace=" + birthPlace + ", maritalStatus="
 				+ maritalStatus + ", cooupation=" + cooupation
 				+ ", educatedLevel=" + educatedLevel + ", address=" + address
-				+ ", phoneNum=" + phoneNum + ", children=" + children + "]";
+				+ ", phoneNum=" + phoneNum + ", children=" + children
+				+ ", healthProfile=" + healthProfile + "]";
 	}
 
 	public User() {
 		super();
 	}
 
-	public User(String id, String realName, String password, String sex,
-			String ethnicity, Date bitrhday, String nativePlace,
-			String birthPlace, String maritalStatus, String cooupation,
-			String educatedLevel, String address, String phoneNum,
-			Set<Child> children) {
-		super();
-		this.id = id;
-		this.realName = realName;
-		this.password = password;
-		this.sex = sex;
-		this.ethnicity = ethnicity;
-		this.bitrhday = bitrhday;
-		this.nativePlace = nativePlace;
-		this.birthPlace = birthPlace;
-		this.maritalStatus = maritalStatus;
-		this.cooupation = cooupation;
-		this.educatedLevel = educatedLevel;
-		this.address = address;
-		this.phoneNum = phoneNum;
-		this.children = children;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

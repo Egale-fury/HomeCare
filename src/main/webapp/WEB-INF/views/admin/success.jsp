@@ -24,7 +24,7 @@
 	width: 23%;
 	margin-top: -6px;
 	height: 745px;
-	background: #E0E0E3 url(../img/sidebar.png) repeat;
+	background: #E0E0E3 url(<%=basePath %>img/sidebar.png) repeat;
 	float: left;
 	min-height: 500px;
 }

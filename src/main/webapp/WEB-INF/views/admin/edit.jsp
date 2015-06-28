@@ -12,16 +12,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link rel="stylesheet" href="<%=basePath %>css/layout.css" type="text/css"
 	media="screen" />
-<script src="<%=basePath%>js/back/jquery.js"></script>
-<script src="<%=basePath%>js/back/jquery.validate.js"></script>	
-
-
+<script src="<%=basePath %>js/back/jquery-1.5.2.min.js"></script>
+<script src="<%=basePath %>js/back/hideshow.js" type="text/javascript"></script>
+<script src="<%=basePath %>js/back/jquery.tablesorter.min.js"
+	type="text/javascript"></script>
 <script type="text/javascript" src="<%=basePath %>js/back/jquery.equalHeight.js"></script>
 <!-- 配置文件 -->
 <script type="text/javascript" src="<%=basePath %>ueditor/ueditor.config.js"></script>
 <!-- 编辑器源码文件 -->
 <script type="text/javascript" src="<%=basePath %>ueditor/ueditor.all.js"></script>
-<title>主界面</title>
+<title>编辑</title>
 
 
 <style type="text/css">
@@ -34,7 +34,7 @@
 	width: 23%;
 	margin-top: -6px;
 	height: 745px;
-	background: #E0E0E3 url(<%=basePath%>img/sidebar.png) repeat;
+	background: #E0E0E3 url(<%=basePath %>img/sidebar.png) repeat;
 	float: left;
 	min-height: 500px;
 }
@@ -59,15 +59,17 @@
 
 #article_div {
 	position: relative;
-	width: 100%;
+	width: 80%;
 	height: 8%;
+	left: 10%;
 	background-color: #F5F5F5;
 }
 
 #author_div {
 	position: relative;
-	width: 100%;
+	width: 80%;
 	height: 8%;
+	left: 10%;
 	margin-top: 20px;
 	background-color: #F5F5F5;
 }
@@ -81,6 +83,7 @@ span {
 	position: relative;
 	width: 10%;
 	height: 90%;
+	left: 10%;
 	top: 5%;
 	bottom: 5%;
 	background-color: #F5F5F5;
@@ -89,8 +92,9 @@ span {
 
 input {
 	position: relative;
-	width: 70%;
+	width: 80%;
 	height: 80%;
+	left: 10%;
 	top: 5%;
 	bottom: 5%;
 	background-color: white;
@@ -120,14 +124,6 @@ input {
 	background-color: #4169E1;
 	cursor:pointer;
 } 
-#title-error{
-	color: red;
-	font-size: 14pt;
-}
-#author-error{
-	color: red;
-	font-size: 14pt;
-}
 </style>
 </head>
 <body>
@@ -137,16 +133,14 @@ input {
 	<div id="sidebar_content">
 		<jsp:include page="./sidebar.jsp"></jsp:include>
 	</div>
-	<form id="main_content">
+	<div id="main_content">
 		<div id="add_content">
 			<div id="article_div">
-				<span>标题</span> &nbsp;&nbsp; 
-				<input type="text" id="title" name="title"  >
-				<span id="error"></span>
+				<span>标题</span> &nbsp;&nbsp; <input type="text" id="title" name="title" value="${editnewscontent.title}">
+
 			</div>
 			<div id="author_div">
-				<span>作者</span> &nbsp;&nbsp; 
-				<input type="text" id="author" name="author" >
+				<span>作者</span> &nbsp;&nbsp; <input type="text" id="author" name="author" value="${editnewscontent.authorName}">
 			</div>
 			<div id="ueditor_div">
 				<!-- 编辑器配置-->
@@ -154,60 +148,13 @@ input {
 			</div>
 		</div>
 		<div id="submit_div">
-			<button id="sub" type="submit">
+			<button id="sub" onclick="commit()">
 			提交
 			</button>
 		</div>
-	</form>
+	</div>
 
 	<script type="text/javascript">
-	//input框为空的判断 
-	 $().ready(function() {
-           $("#main_content").validate({
-			 onsubmit:true,
-			 onfocusout:false,
-			 onkeyup :false,
-			 rules:{
-				 title:{
-					 required:true
-				 },
-				 author:{
-					 required:true
-				 }
-				
-				 
-			 },
-			 messages:{
-				 title:{
-					 required:"请填写标题！"
-				 },
-				 author:{
-				     required:"请填写作者！ "
-			 }
-				 
-			 },
-			 submitHandler: function(form){
-				 $.ajax({
-						url : '/Home-BasedCare/communityNews',
-						type : 'POST',
-						contentType : 'application/json',
-						dataType : 'json',
-						data:JSON.stringify(com()),
-						success : function(data) {
-							console.log(data);
-							window.location.href = "/Home-BasedCare/communityNews/success";
-						},
-						error : function(status) {
-							comsole.log("failure");
-						}
-					});
-			 }
-		 }
-				 
-		 );
-		});
-	
-	 //构建编辑器对象
 	   var editor = new UE.ui.Editor({ initialFrameHeight:400,initialFrameWidth:950,
 		   toolbars: [
 	      [  'undo', 'redo', 'bold','indent','snapscreen','italic',
@@ -221,18 +168,12 @@ input {
 	         
 	         ]
 	         ] });
+	   editor.addListener("ready", function () {
+		   editor.setContent('${editnewscontent.article}');
+
+	});
 	   editor.render("ueditor_div");
 
-
-	
-		function com(){
-			var json= {
-			 "title":$("#title").val(),
-		     "article": editor.getContent(),
-			 "authorName":$("#author").val()
-			};
-			return json;
-		}
 	</script>
 </body>
 </html>
