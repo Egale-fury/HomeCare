@@ -85,21 +85,7 @@ public class CommunityNewsController {
 		return communityNewsService.getNews(num);
 	}
 
-	// 删除一条communityNews,返回204表示删除成功
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(value = HttpStatus.OK)
-	public void deleteNews(@PathVariable("id") int id) {
-		logger.info("/communityNews/{id} delete is invoked ");
-		CommunityNews news =  communityNewsService.getNewsById(id);
-		if (news != null) {
-			if(communityNewsService.deleteNews(news))
-				logger.info("delete communityNews success");
-			else
-				logger.info("delete communityNews failed");
-		}
-		
 
-	}
 	
 	//更新一条社区动态消息
 	@RequestMapping(method=RequestMethod.PUT)
@@ -175,4 +161,49 @@ public class CommunityNewsController {
 	 	return view;
 	}
 	
+	//具体查看某一条新闻
+	@RequestMapping(value = "/querynews/{id}", method = RequestMethod.GET)
+	public ModelAndView queryNews(@PathVariable("id") int id) {
+		ModelAndView view = new ModelAndView("admin/query");
+		CommunityNews news = communityNewsService.getNewsById(id);
+		view.addObject("querynewscontent", news);
+		return view;
+	}
+	//编辑一条新闻
+	@RequestMapping(value = "/editnews/{id}", method = RequestMethod.GET)
+	public ModelAndView editNews(@PathVariable("id") int id) {
+		ModelAndView view = new ModelAndView("admin/edit");
+		CommunityNews news = communityNewsService.getNewsById(id);
+		view.addObject("editnewscontent", news);
+		return view;
+	}
+	
+	// 删除一条communityNews,返回204表示删除成功
+	@RequestMapping(value = "/deletenews/{id}", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.OK)
+	public String deleteNews(@PathVariable("id") int id) {
+		CommunityNews news =  communityNewsService.getNewsById(id);
+		if (news != null) {
+			System.out.println("--------");
+			System.out.println(communityNewsService.deleteNews(news));
+			if(communityNewsService.deleteNews(news)){
+				logger.info("delete communityNews success");
+				return "delsuccess";
+			}
+				
+			else{
+				logger.info("delete communityNews failed");
+				return "delfailure";
+			}
+				
+		}
+		
+		return "delfailure";
+	}
+	
+	//后台数据提交跳转到的成功界面
+	@RequestMapping(value="/delsuccess",method=RequestMethod.GET)
+	public String getDelSuccess(){
+		return "admin/delsuccess";
+	}
 }

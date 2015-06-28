@@ -17,10 +17,13 @@
 <title>居家养老服务系统>>社区动态</title>
 
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link rel="stylesheet" href="<%=basePath %>css/button.css">
+
 <script src="<%=basePath%>js/jquery-2.1.1.min.js"></script>
+<script src="<%=basePath%>js/back/jquery.validate.js"></script>
 
 <style type="text/css">
-#alistnews {
+#alistnews_div {
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -42,31 +45,13 @@
 .newsli {
 	position: relative;
 	display: inline-block;
-	width: 90%;
+	width: 100%;
 	height: 50px;
 }
 
-a.news:link {
-	color: black;
-	text-decoration: none;
-}
 
-a.news:visited {
-	color: black;
-	text-decoration: none;
-}
 
-a.news:hover {
-	color: #e58100;
-	text-decoration: none;
-}
-
-a.news:active {
-	color: black;
-	text-decoration: none;
-}
-
-a.news {
+.news {
 	display: inline-block;
 	font-size: 12pt;
 	width: 50%;
@@ -78,8 +63,7 @@ a.news {
 	display: inline-block;
 	font-size: 12pt;
 	width: 40%;
-	height: 60%;
-	padding-top: 10px;
+	height: 100%;
 	float: right;
 }
 
@@ -89,16 +73,11 @@ a.news {
 	font-style: color:black;
 }
 
-#page_div {
-	position: relative;
-	width: 80%;
-	height: 20%;
-	margin: 0 auto;
-}
+
 
 .pageinfo {
 	position: relative;
-	float: right;
+	margin:0 auto;
 	padding-top: 10px;
 	padding-left: 20px;
 	width: 60%;
@@ -137,18 +116,24 @@ a.option_href:active {
     		<ul class="newsul">
     		<c:forEach items="${admin_communityNews_pageInfo.news}" var="list">
     			<li class="newsli">
-    				<a class="news" href="">${list.title}</a>
+    				<span style="font-size: 12pt">标题：</span>
+    				<div class="news">${list.title}</div>
     				<div class="options_div"> 
-    					<a class="option_href" href="">删除</a>
-    					<a class="option_href" href="">编辑</a>
-    					<a class="option_href" href="">查看</a>
+    				    <a href="/Home-BasedCare/communityNews/querynews/${list.id}" class="button button-glow button-rounded button-raised button-primary">查看</a>
+    				    <a href="/Home-BasedCare/communityNews/editnews/${list.id}" class="button button-glow button-rounded button-raised button-primary">编辑</a>
+    				    <a onclick="del(${list.id})"  class="button button-glow button-rounded button-raised button-primary">删除</a>
+    				    <!--  
+    					<a class="option_href" href="/Home-BasedCare/communityNews/deletenews/${list.id}">删除</a>
+    					<a class="option_href" href="/Home-BasedCare/communityNews/editnews/${list.id}">编辑</a>
+    					<a class="option_href" href="/Home-BasedCare/communityNews/querynews/${list.id}">查看</a>
+    					-->
 	 			   </div>
     			</li>
-    			<hr />
+    			<hr style="margin-bottom: 15px;"/>
     			</c:forEach>
     		</ul>
     	</div>
-    	<div id="page_div">
+    
     		<div class="pageinfo">
 	 		<a id="first" href="/Home-BasedCare/communityNews/query/0/9">首页</a> 
             <a id="former"
@@ -158,12 +143,30 @@ a.option_href:active {
 	 		<a id="last"
 					href="/Home-BasedCare/communityNews/query/${admin_communityNews_pageInfo.totalPages-1}/15">尾页</a>&nbsp;&nbsp;
 	 		<span>共${admin_communityNews_pageInfo.totalCount}条</span>&nbsp;
-	 	    <a>每页显示15条</a>&nbsp;
+	 	    <span>每页显示15条</span>&nbsp;
 	 	    <div id="page" style="display: inline-block;">第${admin_communityNews_pageInfo.currentPage+1}页</div>
-	 		</div>
+	
     	</div>
     </div>
 	<script type="text/javascript">
+
+	//删除 
+	function del(id){
+		var newsid = id;
+		$.ajax({
+			url : '/Home-BasedCare/communityNews/deletenews/'+newsid,
+			type : 'POST',
+			success : function(data) {
+				console.log("success");
+				window.location.href = "/Home-BasedCare/communityNews/delsuccess";
+			},
+			error : function(status) {
+				comsole.log("failure");
+			}
+		});
+	}
+
+	
 		var current = ${admin_communityNews_pageInfo.currentPage}
 		console.log(current);
 		console.log(${admin_communityNews_pageInfo.totalPages});
@@ -177,7 +180,7 @@ a.option_href:active {
 			$("#last").hide();
 		}
 
-		
+	
 	</script>
 
 </body>

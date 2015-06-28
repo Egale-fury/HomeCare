@@ -71,7 +71,7 @@ public class CommunityNewServiceImpl extends BaseService implements CommunityNew
 	public boolean deleteNews(CommunityNews news) {
 		CommunityNews temp = communityNewsDao.find(news.getId());
 		if (temp != null) {
-			communityNewsDao.delete(news);
+			communityNewsDao.delete(temp);
 			return true;
 		} else {
 			logger.info("the communityNews was to delete does not exist !");

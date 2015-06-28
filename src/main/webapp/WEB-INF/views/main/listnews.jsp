@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 		<c:forEach items="${communityNews_pageInfo.news}" var="list">
 	 			<li class="infoli"><img  src="<%=basePath %>img/arrow1.png" >
 	 			   <a class="b" href="${pageContext.request.contextPath}/communityNews/${list.id}">${list.title }</a>
-	 			   <div class="date"> <fmt:formatDate value="${list.date}" pattern="yyyy-MM-dd"/>
+	 			   <div class="date"> <fmt:formatDate value="${list.date}" pattern="yyyy-MM-dd HH:MM"/>
 	 			   </div>
 	 			 </li>
 			</c:forEach>
@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	    <a id="next" href="/Home-BasedCare/communityNews/listNews/${communityNews_pageInfo.currentPage+1}/15">下一页</a>
 	 		<a id="last" href="/Home-BasedCare/communityNews/listNews/${communityNews_pageInfo.totalPages-1}/15">尾页</a>&nbsp;&nbsp;
 	 		<span>共${communityNews_pageInfo.totalCount}条</span>&nbsp;
-	 	    <a>每页显示15条</a>&nbsp;
+	 	    <span>每页显示15条</span>&nbsp;
 	 	    <div id="page" style="display: inline-block;">第${communityNews_pageInfo.currentPage+1}页</div>
 	 		</div>
 	 	</div>
