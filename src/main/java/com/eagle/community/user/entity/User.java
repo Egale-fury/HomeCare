@@ -1,5 +1,6 @@
 package com.eagle.community.user.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -8,10 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -21,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "HBC_USERS")
-public class User {
+public class User implements Serializable{
 
 	@Id
 	// @GeneratedValue(strategy = GenerationType.TABLE)
@@ -78,8 +77,7 @@ public class User {
 	@JsonProperty
 	private Set<Child> children;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="health_profile_id")
+	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
 	private HealthProfile healthProfile;
 
 	public String getId() {
