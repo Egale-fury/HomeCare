@@ -137,25 +137,25 @@ public class CommunityNewsController {
 	//后台数据提交跳转到的成功界面
 	@RequestMapping(value="/success",method=RequestMethod.GET)
 	public String getSuccess(){
-		return "admin/success";
+		return "admin/common/success";
 	}
 	
 	//新建动态的链接
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String startAddNews(){
-		return "admin/addNews";
+		return "admin/news/addInfo";
 	}
 	
 	//查看的链接
 		@RequestMapping(value="/query",method=RequestMethod.GET)
 		public String queryNews(){
-			return "admin/querynews";
+			return "admin/news/queryallnews";
 		}
 	
 	//查看链接的分页部分
 	@RequestMapping(value="/query/{currentPage}/{pageSize}",method=RequestMethod.GET)
 	public ModelAndView queryNews(@PathVariable("currentPage")int currentPage,@PathVariable("pageSize")int pageSize){
-		ModelAndView view =new ModelAndView("admin/alistnews");
+		ModelAndView view =new ModelAndView("admin/news/alistnews");
 	 	Pagination pagination =communityNewsService.getNews(currentPage, pageSize, true);
 		view.addObject("admin_communityNews_pageInfo",pagination);
 	 	return view;
@@ -164,7 +164,7 @@ public class CommunityNewsController {
 	//具体查看某一条新闻
 	@RequestMapping(value = "/querynews/{id}", method = RequestMethod.GET)
 	public ModelAndView queryNews(@PathVariable("id") int id) {
-		ModelAndView view = new ModelAndView("admin/query");
+		ModelAndView view = new ModelAndView("admin/news/newsquery");
 		CommunityNews news = communityNewsService.getNewsById(id);
 		view.addObject("querynewscontent", news);
 		return view;
@@ -172,7 +172,7 @@ public class CommunityNewsController {
 	//编辑一条新闻
 	@RequestMapping(value = "/editnews/{id}", method = RequestMethod.GET)
 	public ModelAndView editNews(@PathVariable("id") int id) {
-		ModelAndView view = new ModelAndView("admin/edit");
+		ModelAndView view = new ModelAndView("admin/news/newsedit");
 		CommunityNews news = communityNewsService.getNewsById(id);
 		view.addObject("editnewscontent", news);
 		return view;
@@ -184,8 +184,6 @@ public class CommunityNewsController {
 	public String deleteNews(@PathVariable("id") int id) {
 		CommunityNews news =  communityNewsService.getNewsById(id);
 		if (news != null) {
-			System.out.println("--------");
-			System.out.println(communityNewsService.deleteNews(news));
 			if(communityNewsService.deleteNews(news)){
 				logger.info("delete communityNews success");
 				return "delsuccess";
@@ -204,6 +202,6 @@ public class CommunityNewsController {
 	//后台数据提交跳转到的成功界面
 	@RequestMapping(value="/delsuccess",method=RequestMethod.GET)
 	public String getDelSuccess(){
-		return "admin/delsuccess";
+		return "admin/common/delsuccess";
 	}
 }
