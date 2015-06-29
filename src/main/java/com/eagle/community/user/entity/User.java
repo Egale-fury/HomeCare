@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.eagle.community.health_profile.entity.HealthProfile;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -78,6 +79,7 @@ public class User implements Serializable{
 	private Set<Child> children;
 	
 	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
+	@JsonIgnore
 	private HealthProfile healthProfile;
 
 	public String getId() {

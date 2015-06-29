@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -32,23 +33,51 @@ public class HealthProfile implements Serializable{
     parameters=@Parameter(name="property", value="user"))
 	private String userId;
 	
-	@OneToOne(cascade=CascadeType.MERGE)
+	@OneToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
 	@PrimaryKeyJoinColumn(name="user_id")
 	private User user;
 	
+	@Column(name="blood_type")
 	private String bloodType;
 	
+	@Column(name="height")
 	private float height;
 	
+	@Column(name="weight")
 	private float weight;
 	
+	@Column(name="exercise_habits")
 	private String exerciseHabits;
 	
+	@Column(name="fhog")
 	private  String fhog;//家庭遗传病史
 	
+	@Column(name="disability")
 	private String disability;//残疾情况
 	
+	@Column(name="self_care_ability")
 	private String selfCareAbility;//自理能力
+	
+	/*慢性病情况
+	 * (老年痴呆、高血压、冠心病、脑中、糖尿病、脂肪肝 etc)
+	 * Alzheimer's disease(dementia )、hypertension 、Coronary Heart Disease、Diabetes、Fatty liver
+	 * 
+	 * */
+	
+	@Column(name="dementia")
+	private String dementia;//老年痴呆
+	
+	@Column(name="hypertension")
+	private String hypertension;//高血压
+	
+	@Column(name="coronary_heart_disease")
+	private String coronaryHeartDisease;//冠心病
+	
+	@Column(name="diabetes")
+	private String diabetes;//糖尿病
+	
+	@Column(name="fatty_liver")
+	private String fattyLiver;//脂肪肝
 	
 	
 	public String getUserId() {
@@ -127,22 +156,55 @@ public class HealthProfile implements Serializable{
 	public HealthProfile() {
 		super();
 	}
-	
-	//体检情况
-	
-	/*慢性病情况
-	 * (老年痴呆、高血压、冠心病、脑中、糖尿病、脂肪肝 etc)
-	 * */
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "HealthProfile [userId=" + userId 
+				+ ", bloodType=" + bloodType + ", height=" + height
+				+ ", weight=" + weight + ", exerciseHabits=" + exerciseHabits
+				+ ", fhog=" + fhog + ", disability=" + disability
+				+ ", selfCareAbility=" + selfCareAbility + "]";
+	}
+
+	public String getDementia() {
+		return dementia;
+	}
+
+	public void setDementia(String dementia) {
+		this.dementia = dementia;
+	}
+
+	public String getHypertension() {
+		return hypertension;
+	}
+
+	public void setHypertension(String hypertension) {
+		this.hypertension = hypertension;
+	}
+
+	public String getCoronaryHeartDisease() {
+		return coronaryHeartDisease;
+	}
+
+	public void setCoronaryHeartDisease(String coronaryHeartDisease) {
+		this.coronaryHeartDisease = coronaryHeartDisease;
+	}
+
+	public String getDiabetes() {
+		return diabetes;
+	}
+
+	public void setDiabetes(String diabetes) {
+		this.diabetes = diabetes;
+	}
+
+	public String getFattyLiver() {
+		return fattyLiver;
+	}
+
+	public void setFattyLiver(String fattyLiver) {
+		this.fattyLiver = fattyLiver;
+	}
 	
 	
 	
