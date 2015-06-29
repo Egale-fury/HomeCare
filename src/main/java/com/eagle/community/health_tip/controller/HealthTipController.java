@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eagle.community.health_tip.entity.HealthTip;
 import com.eagle.community.health_tip.entity.Pagination;
 import com.eagle.community.health_tip.service.HealthTipService;
-import com.eagle.community.news.entity.CommunityNews;
 
 @Controller
 @RequestMapping(value = "/healthTip")

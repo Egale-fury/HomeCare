@@ -33,9 +33,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="menubox">
 				<div class="menuboxchoice">
 				<a class="title" href="#" > 首页</a> 
-				<a class="title" href="./communityservice.jsp" >社区动态</a> 
+				<a class="title" href="/Home-BasedCare/communityNews/listNews/0/15" >社区动态</a> 
 				<a class="title" href="#" >服务信息</a> 
-				<a class="title" href="#" >健康知识</a> 
+				<a class="title" href="/Home-BasedCare/healthTip/listtips/0/15" >健康知识</a> 
 				<a class="title" href="#" >文化娱乐</a> 
 				<a class="title" href="#" >个人登录</a> 
 				</div>
@@ -147,50 +147,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			    <!--健康知识  -->
 			  <div class="healthknowledge">
-				  <div class="column" >
-				    <em>健康知识 </em>
-				     <a class="a" href="#">>>更多</a>
-				 </div>
-				 <hr class="firstline" />
-				 <ul style="padding-right: 4px">
-					<li><a class="b"  href="#" >奔驰总设计师：设计不会因技术进步更改</a>
-					 <div class="timelocate">
-				      <span >2015.3.31</span>
-				     </div>
-					</li>
-					<hr class="remainline"/>
-					<li><a class="b"  href="#" >咒语吗？日本网友看中文元素周期表崩溃</a>
-					 <div class="timelocate">
-				      <span >2015.3.31</span>
-				     </div>
-					</li>
-					<hr class="remainline"/>
-					<li><a class="b" href="#" >很有文化品味的意大利海边小村庄</a>
-					 <div class="timelocate">
-				      <span >2015.3.31</span>
-				     </div>
-					</li>
-					<hr class="remainline"/>
-					<li><a class="b" href="#" >Angelababy组LOL队 4连胜摆脱青铜段位</a>
-					 <div class="timelocate">
-				      <span >2015.3.31</span>
-				     </div>
-					</li>
-					<hr class="remainline"/>
-					<li><a class="b"  href="#" >iPhone也将加入苹果官翻行列：敢买吗？</a>
-					 <div class="timelocate">
-				      <span >2015.3.31</span>
-				     </div>
-					</li>
-					<hr class="remainline"/>
-					<li><a class="b" href="#" >专访《少年四大名捕》演员钱泳辰</a>
-					 <div class="timelocate">
-				      <span >2015.3.31</span>
-				     </div>
-					</li>
-					<hr class="remainline"/>
-				</ul>
-		   </div>
+			    	<c:import url="/healthTip/HealthTip/6">
+		    	    </c:import>
+              </div>
 			
 			 <!--文化娱乐  -->
 			  <div class="culture">

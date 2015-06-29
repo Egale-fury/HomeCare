@@ -104,13 +104,13 @@
     	</div>
     
     		<div class="pageinfo">
-	 		<a id="first" href="/Home-BasedCare/communityNews/query/0/9">首页</a> 
+	 		<a id="first" href="/Home-BasedCare/healthTip/query/0/9">首页</a> 
             <a id="former"
-					href="/Home-BasedCare/communityNews/query/${admin_healthTip_pageInfo.currentPage-1}/15">上一页</a>
+					href="/Home-BasedCare/healthTip/query/${admin_healthTip_pageInfo.currentPage-1}/15">上一页</a>
 	 	    <a id="next"
-					href="/Home-BasedCare/communityNews/query/${admin_healthTip_pageInfo.currentPage+1}/15">下一页</a>
+					href="/Home-BasedCare/healthTip/query/${admin_healthTip_pageInfo.currentPage+1}/15">下一页</a>
 	 		<a id="last"
-					href="/Home-BasedCare/communityNews/query/${admin_healthTip_pageInfo.totalPages-1}/15">尾页</a>&nbsp;&nbsp;
+					href="/Home-BasedCare/healthTip/query/${admin_healthTip_pageInfo.totalPages-1}/15">尾页</a>&nbsp;&nbsp;
 	 		<span>共${admin_healthTip_pageInfo.totalCount}条</span>&nbsp;
 	 	    <span>每页显示15条</span>&nbsp;
 	 	    <div id="page" style="display: inline-block;">第${admin_healthTip_pageInfo.currentPage+1}页</div>
