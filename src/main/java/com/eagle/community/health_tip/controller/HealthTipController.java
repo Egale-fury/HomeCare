@@ -36,7 +36,7 @@ public class HealthTipController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView getTip(@PathVariable("id") long id) {
 		logger.info("getTip is invoked !");
-		ModelAndView view = new ModelAndView("");// 返回试图名产待定
+		ModelAndView view = new ModelAndView("main/tipspart/tipcontent");
 		HealthTip tip = healthTipService.getTip(id);
 		tip.setCount(tip.getCount() + 1);
 		tip = healthTipService.updateTip(tip);
@@ -63,17 +63,31 @@ public class HealthTipController {
 		return healthTipService.getTips(num);
 	}
 
-	@RequestMapping(value = "/{currentPage}/{pageSize}")
+	//请求分页的健康知识
+	@RequestMapping(value = "/listtips/{currentPage}/{pageSize}")
 	public ModelAndView getOnePageTips(
 			@PathVariable("currentPage") int currentPage,
 			@PathVariable("pageSize") int pageSize) {
-		ModelAndView view = new ModelAndView("");// 试图名称待定
+		ModelAndView view = new ModelAndView("main/tipspart/listtips");
 		Pagination pagination = healthTipService.getTips(currentPage, pageSize,
 				true);
 		view.addObject("healthTip_pageInfo", pagination);
 		return view;
 
 	}
+	
+	
+	//请求健康动态栏的信息
+	@RequestMapping(value="/HealthTip/{id}",method=RequestMethod.GET)
+	public   ModelAndView getConmunityService(@PathVariable("id") int id){
+		ModelAndView model = new ModelAndView("main/tipspart/healthtips");
+		List<HealthTip> list = healthTipService.getTips(id);
+		model.addObject("healthtip", list);
+		return model;
+		
+	}
+	
+
 	
 	/*一下定义的操作请求都是管理员权限才能执行的操作*/
 	

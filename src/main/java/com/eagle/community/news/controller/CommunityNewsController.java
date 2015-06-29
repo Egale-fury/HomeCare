@@ -60,15 +60,7 @@ public class CommunityNewsController {
 		return communityNewsService.getAllNews();
 	}
 
-	// 处理查询某条社区动态的请求，并返回jsp视图(具体新闻)
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ModelAndView getNews(@PathVariable("id") int id) {
-		logger.info("/communityNews/getNews  is invoked ");
-		ModelAndView view = new ModelAndView("main/newscontent");
-		CommunityNews news = communityNewsService.getNewsById(id);
-		view.addObject("newscontent", news);
-		return view;
-	}
+
 
 	// 通过id查询某条社区动态，返回json
 	@RequestMapping(value = "/{id}.json", method = RequestMethod.GET)
@@ -116,29 +108,37 @@ public class CommunityNewsController {
 	//请求社区动态栏的信息
 	@RequestMapping(value="/ConmunityService/{id}",method=RequestMethod.GET)
 	public   ModelAndView getConmunityService(@PathVariable("id") int id){
-		ModelAndView model = new ModelAndView("main/communityservice");
+		ModelAndView model = new ModelAndView("main/newspart/communityservice");
 		List<CommunityNews> list = communityNewsService.getNews(id);
 		model.addObject("CSnews", list);
 		return model;
 		
 	}
 	
-
-	
 	// 返回一页的新闻请求
 	@RequestMapping(value="/listNews/{currentPage}/{pageSize}")
 	public ModelAndView getOnPageNews(@PathVariable("currentPage")int currentPage,@PathVariable("pageSize")int pageSize){
-	 	ModelAndView view =new ModelAndView("main/listnews");
-	 	Pagination pagination =communityNewsService.getNews(currentPage, pageSize, true);
-		view.addObject("communityNews_pageInfo",pagination);
-	 	return view;
-	 	}
+		 ModelAndView view =new ModelAndView("main/newspart/listnews");
+		 Pagination pagination =communityNewsService.getNews(currentPage, pageSize, true);
+		 view.addObject("communityNews_pageInfo",pagination);
+		 return view;
+		}
 	
-	//后台数据提交跳转到的成功界面
-	@RequestMapping(value="/success",method=RequestMethod.GET)
-	public String getSuccess(){
-		return "admin/common/success";
+	// 处理查询某条社区动态的请求，并返回jsp视图(具体新闻)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ModelAndView getNews(@PathVariable("id") int id) {
+		logger.info("/communityNews/getNews  is invoked ");
+		ModelAndView view = new ModelAndView("main/newspart/newscontent");
+		CommunityNews news = communityNewsService.getNewsById(id);
+		view.addObject("newscontent", news);
+		return view;
 	}
+	
+
+	
+
+	
+/*      以下是后台数据相关跳转          */
 	
 	//新建动态的链接
 	@RequestMapping(value="/add",method=RequestMethod.GET)
@@ -146,11 +146,20 @@ public class CommunityNewsController {
 		return "admin/news/addInfo";
 	}
 	
+	//后台数据提交跳转到的成功界面
+	@RequestMapping(value="/success",method=RequestMethod.GET)
+	public String getSuccess(){
+		return "admin/common/success";
+	}
+	
 	//查看的链接
-		@RequestMapping(value="/query",method=RequestMethod.GET)
-		public String queryNews(){
+	@RequestMapping(value="/query",method=RequestMethod.GET)
+	public String queryNews(){
 			return "admin/news/queryallnews";
-		}
+	}
+		
+		
+
 	
 	//查看链接的分页部分
 	@RequestMapping(value="/query/{currentPage}/{pageSize}",method=RequestMethod.GET)
