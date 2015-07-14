@@ -32,6 +32,7 @@ public class MyRealm extends AuthorizingRealm {
 	@Resource
 	private AdminService adminService;
 
+	@Resource
 	private UserService userService;
 
 	private static final Logger logger = LogManager.getLogger(MyRealm.class);
@@ -63,7 +64,7 @@ public class MyRealm extends AuthorizingRealm {
 				roles.add(admin.getRole());
 				simpleAuthorInfo.setRoles(roles);// 为admin添加角色
 				Set<String> permissions = new HashSet<String>();
-				permissions.add("query");
+//				permissions.add("all");
 				simpleAuthorInfo.setStringPermissions(permissions);// 为admin用户赋予权限
 				return simpleAuthorInfo;
 			} else {

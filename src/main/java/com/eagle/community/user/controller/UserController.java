@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,6 +52,7 @@ public class UserController {
 	}
 
 	// 创建一个新用户的请求
+	@RequiresRoles("admin")
 	@RequestMapping(value="/create",method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody User createUser(@RequestBody User user) {
@@ -60,8 +62,8 @@ public class UserController {
 	}
 
 	// 更新一个已有的用户信息的
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	// 没有使用put是因为不同浏览器支持的原因
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/update", method = RequestMethod.POST)// 没有使用put是因为不同浏览器支持的原因
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody User updateUser(@RequestBody User user) {
 		User temp = userService.updateUser(user);
@@ -69,6 +71,7 @@ public class UserController {
 	}
 
 	// 为某个用户添加子女信息
+	@RequiresRoles("admin")
 	@RequestMapping(value = "/{id}/addChild", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody User addChild(@PathVariable("id") String id,
@@ -77,6 +80,7 @@ public class UserController {
 	}
 
 	// 修改某个用户的某个子女的信息
+	@RequiresRoles("admin")
 	@RequestMapping(value = "/{id}/updateChild", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody User updateChild(@PathVariable("id") String id,

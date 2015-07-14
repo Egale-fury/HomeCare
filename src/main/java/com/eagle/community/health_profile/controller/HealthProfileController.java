@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,6 +56,7 @@ public class HealthProfileController {
 	/* 具有管理员权限才能操作的部分 */
 
 	// 为某个用户创建健康档案
+	@RequiresRoles("admin")
 	@RequestMapping(value = "/create/{userId}", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody HealthProfile createProfile(
@@ -69,6 +71,7 @@ public class HealthProfileController {
 	}
 
 	// 为某个用户更新健康档案信息,并以json形式返回更新过后的档案信息
+	@RequiresRoles("admin")
 	@RequestMapping(value = "/update/{userId}", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody HealthProfile updateProfile(
