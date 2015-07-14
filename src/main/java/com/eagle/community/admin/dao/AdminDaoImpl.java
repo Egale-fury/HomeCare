@@ -1,5 +1,7 @@
 package com.eagle.community.admin.dao;
 
+import java.awt.image.RescaleOp;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
@@ -22,7 +24,13 @@ public class AdminDaoImpl extends BaseDaoImpl<Admin, Integer> implements AdminDa
 				.uniqueResult();
 		return admin;
 	}
-	
+
+	@Override
+	public Admin getByUserName(String userName) {
+		Criteria criteria =createCriteria();
+		Admin admin=(Admin)criteria.add(Restrictions.eq("userName", userName)).uniqueResult();
+		return admin;
+	}
 	
 
 }

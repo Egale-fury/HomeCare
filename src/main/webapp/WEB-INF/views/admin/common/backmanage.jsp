@@ -50,7 +50,7 @@
 		<jsp:include page="sidebar.jsp"></jsp:include>
 	</div>
 	<div id="main_content">
-		
+		${currentAdmin }
 	</div>
 </body>
 </html>

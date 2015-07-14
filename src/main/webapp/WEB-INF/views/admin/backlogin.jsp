@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"
+	id="viewport" name="viewport">
 <title>后台登陆界面</title>
 <style type="text/css">
 body {
@@ -21,7 +30,7 @@ body {
 	margin: 0 auto;
 	width: 940px;
 	height: 238px;
-	background-image: url(./img/login01.jpg);
+	background-image: url(<%=basePath%>/img/login01.jpg);
 }
 
 #content {
@@ -44,7 +53,7 @@ body {
 	float: left;
 	width: 37.8%;
 	height: 100%;
-	background-image: url(./img/login03.jpg);
+	background-image: url(<%=basePath%>/img/login03.jpg);
 }
 
 .content_right {
@@ -112,7 +121,6 @@ body {
 	width: 80%;
 	height: 40%;
 	padding-left: 38%;
-    
 }
 
 #foot {
@@ -132,7 +140,8 @@ body {
 		<div class="content_left"></div>
 		<div class="content_middle">
 			<div class="form_div">
-				<form action=" ${pageContext.request.contextPath}/admin/login" method="post">
+				<form action=" ${pageContext.request.contextPath}/admin/login"
+					method="post">
 					<div class="username_div">
 						<div class="username_image">
 							<img src="./img/user.gif" width="32" height="32">
@@ -140,8 +149,8 @@ body {
 						</div>
 						<div class="username_input">
 							<input type="text" name="userName" id="userName"
-								style="width: 164px; height: 32px;font-family: Verdana, Geneva, sans-serif;"/>
-	
+								style="width: 164px; height: 32px; font-family: Verdana, Geneva, sans-serif;" />
+
 						</div>
 					</div>
 					<div class="password_div">
@@ -150,13 +159,13 @@ body {
 						</div>
 						<div class="password_input">
 							<input type="password" name="password" id="password"
-								style="width: 164px; height: 32px;  font-size: 9pt;"/>
-								
+								style="width: 164px; height: 32px; font-size: 9pt;" />
+
 						</div>
 					</div>
 					<div class="submit_div">
 						<input type="submit" value=""
-							style="background: url(./img/login.gif); width: 95px; height: 34px; left: 20px;cursor:pointer;">
+							style="background: url(./img/login.gif); width: 95px; height: 34px; left: 20px; cursor: pointer;">
 					</div>
 				</form>
 			</div>
@@ -165,10 +174,9 @@ body {
 	</div>
 	<div id="foot"></div>
 	<script type="text/javascript">
-	window.onload = function()
-    {
-     document.getElementById("userName").focus();
-    }						
+		window.onload = function() {
+			document.getElementById("userName").focus();
+		}
 	</script>
 </body>
 </html>

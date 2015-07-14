@@ -5,6 +5,8 @@ import javax.validation.ConstraintViolationException;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.apache.shiro.authz.UnauthenticatedException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -53,5 +55,18 @@ public class ResourceAdvice {
 		return new ApplicationRuntimeException(e.getMessage()).getErrorResponse();
 	}
 	
+	@ExceptionHandler(UnauthenticatedException.class)
+	public String processUnauthenticatedException(UnauthenticatedException e){
+		logger.error(e.getMessage());
+		return "/403";
+	}
 	
+	@ExceptionHandler(UnauthorizedException.class)
+	public String processUnauthorizedException(UnauthorizedException e){
+		logger.error(e.getMessage());
+		return "/403";
+	}
+	
+	
+	//
 }

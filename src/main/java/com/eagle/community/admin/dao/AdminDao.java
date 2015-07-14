@@ -7,4 +7,5 @@ public interface AdminDao extends BaseDao<Admin, Integer>{
 
 	public Admin authenticate(String userName,String password);
 	
+	public Admin getByUserName(String userName);
 }

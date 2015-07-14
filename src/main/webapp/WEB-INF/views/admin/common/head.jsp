@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="section_title">社区居民健康管理系统</div>
 		<div class="btn_view_site">
-			<a href="index.html">注销</a>
+			<a href="/Home-BasedCare/admin/logout">注销</a>
 		</div>
 
 	</div>

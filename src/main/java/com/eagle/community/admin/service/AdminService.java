@@ -10,4 +10,6 @@ public interface AdminService {
 	
 	//更新管理员信息
 	public Admin updateAdminInfo(Admin admin);
+	
+	public Admin getByUserName(String userName);
 }

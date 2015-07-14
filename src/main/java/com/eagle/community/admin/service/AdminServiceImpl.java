@@ -1,19 +1,20 @@
 package com.eagle.community.admin.service;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.springframework.stereotype.Service;
 
 import com.eagle.community.admin.dao.AdminDao;
 import com.eagle.community.admin.entity.Admin;
-import com.eagle.community.admin.exception.AdminNotFoundException;
 import com.eagle.community.admin.exception.AuthenticationException;
-import com.eagle.community.news.service.CommunityNewServiceImpl;
 import com.eagle.community.service.BaseService;
 
 @Service("adminService")
+@Transactional
 public class AdminServiceImpl extends BaseService implements AdminService  {
 
 	private static final Logger logger = LogManager
@@ -38,6 +39,11 @@ public class AdminServiceImpl extends BaseService implements AdminService  {
 		validate(admin);
 		adminDao.update(admin);
 		return admin;
+	}
+
+	@Override
+	public Admin getByUserName(String userName) {
+		return adminDao.getByUserName(userName);
 	}
 	
 	

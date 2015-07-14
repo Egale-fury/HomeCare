@@ -34,6 +34,9 @@ public class Admin {
 	@Column(name="last_login_date")
 	private Date lastLoginDate;
 	
+	@Column(name="role")
+	private String role;
+	
 	public Admin() {
 		super();
 	}
@@ -93,6 +96,14 @@ public class Admin {
 		return "Admin [id=" + id + ", userName=" + userName + ", password="
 				+ password + ", lastLoginIP=" + lastLoginIP
 				+ ", lastLoginDate=" + lastLoginDate + "]";
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	

@@ -8,16 +8,17 @@ import javax.validation.Validator;
 
 import com.eagle.community.exception.ValidationException;
 
-public abstract class BaseService{
-	
-	@Resource
-    protected Validator validator;
+public abstract class BaseService {
 
-    protected void validate(Object request) {
-        Set<? extends ConstraintViolation<?>> constraintViolations = validator.validate(request);
-        if (constraintViolations.size() > 0) {
-            throw new ValidationException(constraintViolations);
-        }
-    }
+	@Resource
+	protected Validator validator;
+
+	protected void validate(Object request) {
+		Set<? extends ConstraintViolation<?>> constraintViolations = validator
+				.validate(request);
+		if (constraintViolations.size() > 0) {
+			throw new ValidationException(constraintViolations);
+		}
+	}
 
 }

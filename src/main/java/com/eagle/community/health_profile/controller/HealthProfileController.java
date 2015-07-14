@@ -75,12 +75,12 @@ public class HealthProfileController {
 			@PathVariable("userId") String userId,
 			@RequestBody HealthProfile profile) {
 		logger.info("updatePforile is invoked ");
-		
-		//待定的管理员权限实现部分
-		
-		String id=healthProfileService.updateHealthProfile(profile);
-		HealthProfile healthProfile =healthProfileService.getHealthProfile(id);
-		
+
+		// 待定的管理员权限实现部分
+
+		String id = healthProfileService.updateHealthProfile(profile);
+		HealthProfile healthProfile = healthProfileService.getHealthProfile(id);
+
 		return healthProfile;
 	}
 

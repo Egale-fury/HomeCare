@@ -254,6 +254,26 @@
 
 		<!-- Jackson JSON END -->
 
+		<!-- security shiro start -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+
+		<!-- security shiro end -->
+
 		<dependency>
 			<groupId> com.baidu.ueditor </groupId>
 			<artifactId> ueditor </artifactId>

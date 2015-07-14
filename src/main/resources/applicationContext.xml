@@ -13,6 +13,7 @@
 		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd ">
 		
 	<context:property-placeholder location="classpath:jdbc.properties" />
+	<import resource="shiro.xml"/>
 	<context:component-scan base-package="com.eagle.community.news.*"></context:component-scan>
 	<context:component-scan base-package="com.eagle.community.admin.*"></context:component-scan>
 	<context:component-scan base-package="com.eagle.community.user.*"></context:component-scan>
@@ -23,7 +24,6 @@
 
 
 	<!-- 配置JSR-303验证 -->
-
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 

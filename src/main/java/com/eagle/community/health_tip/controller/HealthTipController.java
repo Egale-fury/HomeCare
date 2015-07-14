@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,7 +64,7 @@ public class HealthTipController {
 		return healthTipService.getTips(num);
 	}
 
-	//请求分页的健康知识
+	// 请求分页的健康知识
 	@RequestMapping(value = "/listtips/{currentPage}/{pageSize}")
 	public ModelAndView getOnePageTips(
 			@PathVariable("currentPage") int currentPage,
@@ -75,56 +76,57 @@ public class HealthTipController {
 		return view;
 
 	}
-	
-	
-	//请求健康动态栏的信息
-	@RequestMapping(value="/HealthTip/{id}",method=RequestMethod.GET)
-	public   ModelAndView getConmunityService(@PathVariable("id") int id){
+
+	// 请求健康动态栏的信息
+	@RequestMapping(value = "/HealthTip/{id}", method = RequestMethod.GET)
+	public ModelAndView getConmunityService(@PathVariable("id") int id) {
 		ModelAndView model = new ModelAndView("main/tipspart/healthtips");
 		List<HealthTip> list = healthTipService.getTips(id);
 		model.addObject("healthtip", list);
 		return model;
-		
-	}
-	
 
-	
-	/*一下定义的操作请求都是管理员权限才能执行的操作*/
-	
-	//跳转到增添的页面
-	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public String startAddNews(){
+	}
+
+	/* 一下定义的操作请求都是管理员权限才能执行的操作 */
+
+	// 跳转到增添的页面
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String startAddNews() {
 		return "admin/health_tip/addTip";
 	}
-	
-	//增加一个健康小贴士
-	@RequestMapping(value="/create",method=RequestMethod.POST)
+
+	// 增加一个健康小贴士
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody HealthTip createTip(@RequestBody HealthTip tip){
+	public @ResponseBody HealthTip createTip(@RequestBody HealthTip tip) {
 		logger.info("createTip is invoked !'");
 		tip.setReleaseTime(new Date(System.currentTimeMillis()));
-		
-		//权限控制(待实现)
-		
+
+		// 权限控制(待实现)
+
 		return healthTipService.addTip(tip);
 	}
-	
-	//更新一个健康小贴士
-	@RequestMapping(value="/update",method=RequestMethod.POST)
+
+	// 更新一个健康小贴士
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody HealthTip updateTip(@RequestBody HealthTip tip){
+	public @ResponseBody HealthTip updateTip(@RequestBody HealthTip tip) {
 		logger.info("updateTip is invoked !");
 		return healthTipService.updateTip(tip);
 	}
-	
-	//删除一条已经存在的健康小贴士信息
-	@RequestMapping(value="/delete/{id}",method=RequestMethod.POST)
+
+	// 删除一条已经存在的健康小贴士信息
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody boolean deleteTip(@PathVariable("id") long id ){
+	public @ResponseBody boolean deleteTip(@PathVariable("id") long id) {
 		logger.info("deleteTip is invoked !");
-		//待定的权限控制
-		
-		HealthTip tip=healthTipService.getTip(id);
+		// 待定的权限控制
+
+		HealthTip tip = healthTipService.getTip(id);
 		healthTipService.deleteTip(tip);
 		return true;
 	}
@@ -136,50 +138,58 @@ public class HealthTipController {
 	public void setHealthTipService(HealthTipService healthTipService) {
 		this.healthTipService = healthTipService;
 	}
-	
-	//提交成功跳转到的成功界面
-	@RequestMapping(value="/success",method=RequestMethod.GET)
-	public String getSuccess(){
+
+	// 提交成功跳转到的成功界面
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/success", method = RequestMethod.GET)
+	public String getSuccess() {
 		return "admin/common/success";
 	}
-	
-	//查看的链接
-	@RequestMapping(value="/query",method=RequestMethod.GET)
-	public String queryNews(){
+
+	// 查看的链接
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/query", method = RequestMethod.GET)
+	public String queryNews() {
 		return "admin/health_tip/queryalltips";
 	}
-	
-	//查看链接的分页请求
-	@RequestMapping(value="/query/{currentPage}/{pageSize}",method=RequestMethod.GET)
-	public ModelAndView queryTips(@PathVariable("currentPage")int currentPage,@PathVariable("pageSize")int pageSize){
-		ModelAndView view =new ModelAndView("admin/health_tip/alisttips");
-	 	Pagination pagination =healthTipService.getTips(currentPage, pageSize, true);
-		view.addObject("admin_healthTip_pageInfo",pagination);
-	 	return view;
+
+	// 查看链接的分页请求
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/query/{currentPage}/{pageSize}", method = RequestMethod.GET)
+	public ModelAndView queryTips(@PathVariable("currentPage") int currentPage,
+			@PathVariable("pageSize") int pageSize) {
+		ModelAndView view = new ModelAndView("admin/health_tip/alisttips");
+		Pagination pagination = healthTipService.getTips(currentPage, pageSize,
+				true);
+		view.addObject("admin_healthTip_pageInfo", pagination);
+		return view;
 	}
-	
-	//具体查看某一条健康知识信息
-		@RequestMapping(value = "/querytips/{id}", method = RequestMethod.GET)
-		public ModelAndView queryNews(@PathVariable("id") int id) {
-			ModelAndView view = new ModelAndView("admin/health_tip/tipquery");
-			HealthTip tip = healthTipService.getTip(id);
-			view.addObject("querytipcontent", tip);
-			return view;
-		}
-		
-		//编辑一条健康知识
-		@RequestMapping(value = "/edittips/{id}", method = RequestMethod.GET)
-		public ModelAndView editNews(@PathVariable("id") int id) {
-			ModelAndView view = new ModelAndView("admin/health_tip/tipedit");
-			HealthTip tip = healthTipService.getTip(id);
-			view.addObject("edittipcontent", tip);
-			return view;
-		}	
-		
-		//删除成功跳转到的界面
-		@RequestMapping(value="/delsuccess",method=RequestMethod.GET)
-		public String getDelSuccess(){
-			return "admin/common/delsuccess";
-		}
+
+	// 具体查看某一条健康知识信息
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/querytips/{id}", method = RequestMethod.GET)
+	public ModelAndView queryNews(@PathVariable("id") int id) {
+		ModelAndView view = new ModelAndView("admin/health_tip/tipquery");
+		HealthTip tip = healthTipService.getTip(id);
+		view.addObject("querytipcontent", tip);
+		return view;
+	}
+
+	// 编辑一条健康知识
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/edittips/{id}", method = RequestMethod.GET)
+	public ModelAndView editNews(@PathVariable("id") int id) {
+		ModelAndView view = new ModelAndView("admin/health_tip/tipedit");
+		HealthTip tip = healthTipService.getTip(id);
+		view.addObject("edittipcontent", tip);
+		return view;
+	}
+
+	// 删除成功跳转到的界面
+	@RequiresRoles("admin")
+	@RequestMapping(value = "/delsuccess", method = RequestMethod.GET)
+	public String getDelSuccess() {
+		return "admin/common/delsuccess";
+	}
 
 }
