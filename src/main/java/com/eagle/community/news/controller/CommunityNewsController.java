@@ -174,7 +174,7 @@ public class CommunityNewsController {
 	}
 
 	// 具体查看某一条新闻
-
+	@RequiresRoles("admin")
 	@RequestMapping(value = "/querynews/{id}", method = RequestMethod.GET)
 	public ModelAndView queryNews(@PathVariable("id") int id) {
 		ModelAndView view = new ModelAndView("admin/news/newsquery");
