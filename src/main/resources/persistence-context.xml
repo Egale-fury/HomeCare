@@ -69,6 +69,7 @@
 				<value>com.eagle.community.health_tip.entity</value>
 				<value>com.eagle.community.health_profile.entity</value>
 				<value>com.eagle.community.annoucement.entity</value>
+				<value>com.eagle.community.cultural_recreation.entity</value>
 			</list>
 		</property>
 

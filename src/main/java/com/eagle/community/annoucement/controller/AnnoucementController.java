@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -87,6 +88,7 @@ public class AnnoucementController {
 	/* 一下定义的操作请求都是管理员权限才能执行的操作 包括增加修改和删除以及跳转 */
 
 	// 创建一个通知公告
+	@RequiresRoles("admin")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody Annoucement createAnnoucement(
@@ -107,6 +109,7 @@ public class AnnoucementController {
 	}
 
 	// 根据id删除一条已知的通知公告
+	@RequiresRoles("admin")
 	@RequestMapping(value = "/delete/{id}")
 	public String deleteAnnoucement(@PathVariable("id") long id) {
 		logger.info("deleteAnnoucement is invoked !");
