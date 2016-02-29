@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=gb2312"
-	pageEncoding="gb2312"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -14,112 +13,45 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>¾Ó¼ÒÑøÀÏ·şÎñÏµÍ³>>ÉçÇø¶¯Ì¬</title>
+<title>å±…å®¶å…»è€æœåŠ¡ç³»ç»Ÿ>>ç¤¾åŒºåŠ¨æ€</title>
 
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 <link rel="stylesheet" href="<%=basePath %>css/button.css">
-
-<script src="<%=basePath%>js/jquery-2.1.1.min.js"></script>
-<script src="<%=basePath%>js/back/jquery.validate.js"></script>
-
-<style type="text/css">
-#alistnews_div {
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-
-#news_div {
-	position: relative;
-	width: 100%;
-	height: 80%;
-	margin: 0 auto;
-}
-
-.newsul {
-	position: relative;
-	width: 95%;
-	height: 90%;
-}
-
-.newsli {
-	position: relative;
-	display: inline-block;
-	width: 100%;
-	height: 50px;
-}
-
-
-
-.news {
-	display: inline-block;
-	font-size: 12pt;
-	width: 50%;
-	height: 60%;
-	padding-top: 10px;
-}
-
-.options_div {
-	display: inline-block;
-	font-size: 12pt;
-	width: 40%;
-	height: 100%;
-	float: right;
-}
-
-.pageinfo {
-	position: relative;
-	margin:0 auto;
-	padding-top: 10px;
-	padding-left: 20px;
-	width: 60%;
-	height: 30px;
-}
-
-
-
-</style>
-
 </head>
-
 <body>
-
-	<body>
-	<div id="alistnews_div">
-    	<div id="news_div">
-    		<ul class="newsul">
+	<div id="listinfo_div">
+    	<div id="info_div">
+    		<ul >
     		<c:forEach items="${admin_communityNews_pageInfo.news}" var="list">
-    			<li class="newsli">
-    				<span style="font-size: 12pt">±êÌâ£º</span>
-    				<div class="news">${list.title}</div>
-    				<div class="options_div"> 
-    				    <a href="/Home-BasedCare/communityNews/querynews/${list.id}" class="button button-glow button-rounded button-raised button-primary">²é¿´</a>
-    				    <a href="/Home-BasedCare/communityNews/editnews/${list.id}" class="button button-glow button-rounded button-raised button-primary">±à¼­</a>
-    				    <a onclick="del(${list.id})"  class="button button-glow button-rounded button-raised button-primary">É¾³ı</a>
+    			<li >
+    				<span >æ ‡é¢˜ï¼š</span>
+    				<div class="info_title_div">${list.title}</div>
+    				<div class="info_options_div"> 
+    				    <a href="/Home-BasedCare/communityNews/querynews/${list.id}" class="button button-glow button-rounded button-raised button-primary">æŸ¥çœ‹</a>
+    				    <a onclick="del(${list.id})"  class="button button-glow button-rounded button-caution">åˆ é™¤</a>
 	 			   </div>
     			</li>
-    			<hr style="margin-bottom: 15px;"/>
+    			<hr />
     			</c:forEach>
     		</ul>
     	</div>
     
-    		<div class="pageinfo">
-	 		<a id="first" href="/Home-BasedCare/communityNews/query/0/9">Ê×Ò³</a> 
+    		<div id="pageinfo_div">
+	 		<a id="first" href="/Home-BasedCare/communityNews/query/0/9">é¦–é¡µ</a> 
             <a id="former"
-					href="/Home-BasedCare/communityNews/query/${admin_communityNews_pageInfo.currentPage-1}/15">ÉÏÒ»Ò³</a>
+					href="/Home-BasedCare/communityNews/query/${admin_communityNews_pageInfo.currentPage-1}/15">ä¸Šä¸€é¡µ</a>
 	 	    <a id="next"
-					href="/Home-BasedCare/communityNews/query/${admin_communityNews_pageInfo.currentPage+1}/15">ÏÂÒ»Ò³</a>
+					href="/Home-BasedCare/communityNews/query/${admin_communityNews_pageInfo.currentPage+1}/15">ä¸‹ä¸€é¡µ</a>
 	 		<a id="last"
-					href="/Home-BasedCare/communityNews/query/${admin_communityNews_pageInfo.totalPages-1}/15">Î²Ò³</a>&nbsp;&nbsp;
-	 		<span>¹²${admin_communityNews_pageInfo.totalCount}Ìõ</span>&nbsp;
-	 	    <span>Ã¿Ò³ÏÔÊ¾15Ìõ</span>&nbsp;
-	 	    <div id="page" style="display: inline-block;">µÚ${admin_communityNews_pageInfo.currentPage+1}Ò³</div>
-	
-    	</div>
+					href="/Home-BasedCare/communityNews/query/${admin_communityNews_pageInfo.totalPages-1}/15">å°¾é¡µ</a>&nbsp;&nbsp;
+	 		<span >å…±${admin_communityNews_pageInfo.totalCount}æ¡</span>&nbsp;
+	 	    <span >æ¯é¡µæ˜¾ç¤º15æ¡</span>&nbsp;
+	 	    <span>ç¬¬${admin_communityNews_pageInfo.currentPage+1}é¡µ</span>&nbsp;
+	       </div>
     </div>
+	
 	<script type="text/javascript">
-
-	//É¾³ı 
+     //åˆ é™¤ 
 	function del(id){
 		var newsid = id;
 		$.ajax({
@@ -137,11 +69,12 @@
 
 	
 		var current = ${admin_communityNews_pageInfo.currentPage}
+		var total = ${admin_communityNews_pageInfo.totalPages-1}
 		if(current==0){
 			$("#first").hide();
 			$("#former").hide();
 		}
-		if(current==${admin_communityNews_pageInfo.totalPages-1}){
+		if(current==total){
 			console.log("lalal");
 			$("#next").hide();
 			$("#last").hide();
@@ -149,7 +82,8 @@
 
 	
 	</script>
-
+<script src="<%=basePath%>js/jquery-2.1.1.min.js"></script>
+<script src="<%=basePath%>js/jquery.validate.js"></script>
 </body>
 
 

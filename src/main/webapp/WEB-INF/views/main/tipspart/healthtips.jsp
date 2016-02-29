@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=gb2312"
-	pageEncoding="gb2312"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -19,19 +19,19 @@ body{
 }
 
 
-/* ÉçÇø¶¯Ì¬ */
+/* ç¤¾åŒºåŠ¨æ€ */
 .healthtip_div {
 
 	height: 100%;
 	width: 100%;
 
 }
-/* ÁÐ±íÖÐµÄµÚÒ»ÌõÏÂ»®ÏßhrÊôÐÔ*/
+/* åˆ—è¡¨ä¸­çš„ç¬¬ä¸€æ¡ä¸‹åˆ’çº¿hrå±žæ€§*/
 .firstline {
 	width: 100%;
 	margin-bottom: 10px;
 }
-/*Ã¿¸öÐÅÏ¢µÄ±êÌâÀ¸£¨Èç£ºÉçÇø¶¯Ì¬£©*/
+/*æ¯ä¸ªä¿¡æ¯çš„æ ‡é¢˜æ ï¼ˆå¦‚ï¼šç¤¾åŒºåŠ¨æ€ï¼‰*/
 .column {
 	width: 90%;
 	height: 40px;
@@ -42,7 +42,7 @@ body{
 	color: blue;
 	font-weight: bold;
 }
-/*¸ü¶àµÄÁ´½ÓÉèÖÃ*/
+/*æ›´å¤šçš„é“¾æŽ¥è®¾ç½®*/
 a.a:link {
 	color: #ccc;
 }
@@ -64,14 +64,14 @@ a.a {
 	float: right;
 	margin-top: 10px;
 }
-/* Ê±¼äµÄÀàÑ¡ÔñÆ÷ */
+/* æ—¶é—´çš„ç±»é€‰æ‹©å™¨ */
 .timelocate {
 	float: right;
 	font-size: 10pt;
 	margin-lft: 10px;
 }
 
-/* ÁÐ±íÖÐµÄµÚÒ»ÌõÏÂ»®ÏßhrÊôÐÔ*/
+/* åˆ—è¡¨ä¸­çš„ç¬¬ä¸€æ¡ä¸‹åˆ’çº¿hrå±žæ€§*/
 .remainline {
 	width: "90%";
 	margin-bottom: 10px;
@@ -85,7 +85,7 @@ a.a {
 <body>
 	<div class="healthtip_div">
 		<div class="column">
-			<em>½¡¿µÖªÊ¶</em> <a class="a" href="/Home-BasedCare/healthTip/listtips/0/15">>>¸ü¶à</a>
+			<em>å¥åº·çŸ¥è¯†</em> <a class="a" href="/Home-BasedCare/healthTip/listtips/0/15">>>æ›´å¤š</a>
 		</div>
 		<hr class="firstline" />
 		<ul style="padding-right: 4px">

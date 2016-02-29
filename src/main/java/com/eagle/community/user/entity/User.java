@@ -78,7 +78,7 @@ public class User implements Serializable{
 	@JsonProperty
 	private Set<Child> children;
 	
-	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL)
 	@JsonIgnore
 	private HealthProfile healthProfile;
 

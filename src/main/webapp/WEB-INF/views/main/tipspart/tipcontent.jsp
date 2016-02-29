@@ -243,7 +243,7 @@ a.location {
 			<div class="menu">
 				<div class="menubox">
 					<ul style="padding-left: 0px; margin-bottom: 0px;">
-						<li class="titleli"><a class="title" href="#">首页</a></li>
+						<li class="titleli"><a class="title" href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
 						<li class="titleli"><a class="title" href="/Home-BasedCare/communityNews/listNews/0/15">社区动态</a></li>
 						<li class="titleli"><a class="title" href="#">服务信息</a></li>
 						<li class="titleli"><a class="title" href="/Home-BasedCare/healthTip/listtips/0/15">健康知识</a></li>
