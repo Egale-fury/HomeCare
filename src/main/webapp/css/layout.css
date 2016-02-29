@@ -6,7 +6,8 @@ html, body {
 height:820px;
 margin: 0px;
 padding: 0px;
-font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+	font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体",
+		"Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
 background: #F8F8F8;
 font-size: 12px;
 }
@@ -51,9 +52,6 @@ text-shadow: 0 -1px 0 #000;
 font-size: 22px;
 border-width: 0px;
 }
-
-
-
 
 #header .site_title a {
 color: #fff;
@@ -203,6 +201,8 @@ float: left;
 margin: 0 5px;
 }
 
+/*---------------------------------head结束------------------*/
+
 /* Sidebar */
 
 #sidebar  {
@@ -220,7 +220,8 @@ outline: none;
 background: url(../img/sidebar_divider.png) repeat-x;
 display: block;
 width: 100%;
-height: 2px;}
+height: 2px;
+}
 
 
 
@@ -238,19 +239,24 @@ float: left;
 width: 90%;
 }
 
+/*隐藏的标签*/
+/*---------------*/
 .toggleLink {
 color: #999999;
 font-size: 10px;
 text-decoration: none;
 display: block;
 float: right;
-margin-right: 2%
+margin-right: 2%;
+font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体",
+		"Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
 }
 
 #sidebar .toggleLink:hover {
 color: #77BACE;
 text-decoration: none;
 }
+/*------------*/
 
 #sidebar ul {
 clear: both;
@@ -271,6 +277,10 @@ height: 24px;
 line-height: 24px;
 text-shadow: 0 1px 0 #fff;
 margin: 2px 0;
+font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体",
+		"Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+font-size: 10pt;
+		
 }
 
 #sidebar li a:hover {
@@ -340,11 +350,230 @@ text-decoration: underline;
 #sidebar footer {
 margin-top: 20%;
 }
+.copyright{
+	font-size: 18pt;
+	font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体",
+		"Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+}
 
-/* main */
-#main {
-	width: 77%;
-	height: 770px;
+
+/* 每个页面的总体布局样式*/
+#head_content {
+	height: 95px;
+	width: 100%;
+}
+
+#sidebar_content {
+	width: 23%;
+	margin-top: -6px;
+	height: 745px;
+	background: #E0E0E3 url(<%=basePath%>img/sidebar.png) repeat;
 	float: left;
-	background-color:#A9AEC2;
+	min-height: 500px;
+}
+
+#main_content {
+	width: 77%;  
+	height: 720px;
+    margin-top: -6px;
+	float: left;
+	padding-top:20px;
+	background-color: #F5F5F5;
+
+}
+
+/*添加成功页面所显示样式*/
+#success_div {
+	position: relative;
+	margin: 300px auto;
+	width: 300px;
+	height: 125px;
+	background-image: url(../img/success.png)
+}
+/*添加删除成功页面所显示样式*/
+#delsuccess_div{
+    position:relative;
+    margin:300px auto;
+	width: 300px;
+	height: 125px;
+	background-image: url(<%=basePath %>img/deletesuccess.png)
+}
+/*添加页面中作者以及标题样式*/
+#add_content {
+	position: relative;
+	width: 95%;
+	left: 5%;
+	background-color: #F5F5F5;
+}
+
+#article_div {
+	position: relative;
+	width: 100%;
+	height: 8%;
+	background-color: #F5F5F5;
+}
+
+#author_div {
+	position: relative;
+	width: 100%;
+	height: 8%;
+	margin-top: 20px;
+	background-color: #F5F5F5;
+}
+#add_content span {
+	position: relative;
+	width: 10%;
+	height: 90%;
+	top: 5%;
+	bottom: 5%;
+	background-color: #F5F5F5;
+	font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体",
+		"Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+	font-size: 15pt;
+}
+#add_content input {
+	position: relative;
+	width: 70%;
+	height: 80%;
+	top: 5%;
+	bottom: 5%;
+	background-color: white;
+	font-size: 15pt;
+}
+/*标题与作者(来源)的错误提示样式*/
+#title-error{
+	color: red;
+	font-size: 14pt;
+}
+#author-error{
+	color: red;
+	font-size: 14pt;
+}
+/*编辑器的样式*/
+#ueditor_div{
+	position: relative;
+	width: 100%;
+	height: 500px;
+	margin-top: 10px;
+}
+/*提交按钮的样式*/
+#submit_div{
+	position: relative;
+	margin: 5px auto;
+	width: 90px;
+	height: 30px;
+}
+#sub{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	font-size: 15pt;
+	background-color: #4169E1;
+	cursor:pointer;
+}
+/*点击查看按钮中的主界面的样式*/
+#listinfo_div{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+#info_div{
+	position: relative;
+	width: 100%;
+	height: 80%;
+	margin: 0 auto;
+}
+#info_div ul{
+	position: relative;
+	width: 95%;
+	height: 90%;
+}
+#info_div li{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	height: 50px;
+}
+#info_div span{
+	font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体",
+		"Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+	font-size: 12pt;
+}
+.info_title_div{
+	display: inline-block;
+	width: 50%;
+	height: 60%;
+	padding-top: 10px;
+	font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体",
+		"Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+	font-size:12pt;
+}
+.info_options_div{
+	display: inline-block;
+	width: 40%;
+	height: 100%;
+	float: right;
+	font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体",
+		"Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+	font-size: 12pt;
+}
+#info_div hr{
+	margin-bottom: 15px;
+}
+#pageinfo_div{
+	position: relative;
+	margin:0 auto;
+	width: 60%;
+	height: 30px;
+	text-align: center;
+}
+#pageinfo_div span{
+	font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体",
+		"Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+}
+
+/*具体文章的内容样式*/
+#content {
+	position: relative;
+	margin : 10px auto;
+	width: 90%;
+	height:700px;
+	background-color: #FFFFFF;
+	border-style:solid;
+	border-radius:5px;
+	border-width:1px;
+	border-color: #BABABA;
+}
+
+/* 文章的标题  */
+.articletitle {
+	position: relative;
+	width: 75%;
+	margin: 10px auto;
+	height: 5%;
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+}
+/* 文章的时间和标题  */
+.dateandauthor {
+	position: relative;
+	width: 75%;
+	margin: 5px auto;
+	height: 25px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #F0F0F0;
+	padding-top: 15px;
+}
+
+/* 文章的主题内容   */
+#articlecontent {
+	position: relative;
+	width: 90%;
+	height:auto!important;
+	min-height:85%;
+	margin: auto;
+	overflow: auto;
+
 }

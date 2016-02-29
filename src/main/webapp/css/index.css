@@ -170,12 +170,12 @@ a.b {
 }
 
 /* 列表中的第一条下划线hr属性*/
-.firstline {
+hr.firstline {
 	width: 100%;
 	margin-bottom: 10px;
 }
 /* 列表中的第一条下划线hr属性*/
-.remainline {
+hr.remainline {
 	width: "90%";
 	margin-bottom: 10px;
 	margin-top: 10px;
