@@ -32,7 +32,7 @@ public class HealthProfile implements Serializable{
     @GenericGenerator(name="gen", strategy="foreign",   
     parameters=@Parameter(name="property", value="user"))
 	private String userId;
-	
+//	
 	@OneToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
 	@PrimaryKeyJoinColumn(name="user_id")
 	private User user;
@@ -159,7 +159,7 @@ public class HealthProfile implements Serializable{
 
 	@Override
 	public String toString() {
-		return "HealthProfile [userId=" + userId 
+		return "HealthProfile [userId=" +userId
 				+ ", bloodType=" + bloodType + ", height=" + height
 				+ ", weight=" + weight + ", exerciseHabits=" + exerciseHabits
 				+ ", fhog=" + fhog + ", disability=" + disability

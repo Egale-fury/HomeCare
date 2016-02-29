@@ -36,6 +36,7 @@ public class TestHealthProfileService {
 	public void testGetProfile(){
 		HealthProfile profile=healthProfileService.getHealthProfile("199405162992");
 		System.out.println(profile);
+		System.err.println(profile.getUser().toString());
 	}
 	
 	//@Test

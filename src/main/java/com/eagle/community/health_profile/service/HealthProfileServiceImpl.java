@@ -62,7 +62,7 @@ public class HealthProfileServiceImpl extends BaseService implements
 			HealthProfile healthProfile) {
 		validate(healthProfile);
 		healthProfileDao.update(healthProfile);
-		return healthProfile.getUserId();
+		return healthProfile.getUser().getId();
 	}
 
 
