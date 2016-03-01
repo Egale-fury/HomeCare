@@ -70,6 +70,7 @@
 				<value>com.eagle.community.health_profile.entity</value>
 				<value>com.eagle.community.annoucement.entity</value>
 				<value>com.eagle.community.cultural_recreation.entity</value>
+				<value>com.eagle.community.message.entity</value>
 			</list>
 		</property>
 
@@ -78,7 +79,7 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<!-- 自动更新表结构，开发阶段使用 -->
-				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 				<!-- <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory 
