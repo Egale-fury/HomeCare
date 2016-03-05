@@ -1,6 +1,7 @@
 package com.eagle.community.user.service;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -14,10 +15,12 @@ import com.eagle.community.admin.service.AdminServiceImpl;
 import com.eagle.community.service.BaseService;
 import com.eagle.community.user.dao.UserDao;
 import com.eagle.community.user.entity.Child;
+import com.eagle.community.user.entity.Pagination;
 import com.eagle.community.user.entity.User;
 import com.eagle.community.user.exception.AuthenticationException;
 import com.eagle.community.user.exception.ChildNotFoundException;
 import com.eagle.community.user.exception.DuplicateUserException;
+import com.eagle.community.user.exception.NoUserException;
 import com.eagle.community.user.exception.UserNotFoundException;
 
 @Service("userService")
@@ -124,6 +127,33 @@ public class UserServiceImpl extends BaseService implements UserService {
 		}
 		updateUser(user);
 		return user;
+	}
+
+	@Override
+	public Pagination getUsers(int currentPage, int pageSize) {
+		int totalCount = getTotalCount();
+		Pagination pagination = new Pagination(currentPage, pageSize,
+				totalCount);
+		List<User> list = userDao.list(currentPage, pageSize,
+				true);
+		if (list.size() == 0) {
+			logger.info("还未有居民信息录入");
+			throw new NoUserException();
+		} else {
+			if (totalCount % pageSize == 0) {
+				pagination.setTotalPages(totalCount / pageSize );
+			} else {
+				pagination.setTotalPages(totalCount / pageSize+1 );
+			}
+			pagination.setUsers(list);
+			return pagination;
+			
+		}
+	}
+
+	@Override
+	public int getTotalCount() {
+		return userDao.getTotalCount();
 	}
 
 }
